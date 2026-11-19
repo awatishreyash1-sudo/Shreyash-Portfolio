@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Shreyash Awati</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="container nav-container">
+        <a href="index.html" class="logo">Shreyash<span>.</span></a>
+        <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="education.html">Education</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="certifications.html">Certificates</a>
+            <a href="assignments.html">Assignments</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+        <a href="resume/Shreyash-Resume.pdf" class="nav-resume" target="_blank">Resume <i class="fa-solid fa-download"></i></a>
+    </div>
+</header>
+
+<section class="page-hero">
+    <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> / Contact</div>
+        <span class="section-tag">GET IN TOUCH</span>
+        <h1>Contact Me</h1>
+        <p>Feel free to reach out for professional opportunities, collaboration or networking.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container contact-grid">
+
+        <div class="contact-info">
+            <h2>Let's Connect</h2>
+            <p style="color:var(--muted)">
+                I'm open to connecting with people, learning new things
+                and exploring opportunities.
+            </p>
+
+            <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                    <small>Email</small>
+                    <a href="mailto:your-email@gmail.com">your-email@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fa-brands fa-github"></i>
+                <div>
+                    <small>GitHub</small>
+                    <a href="https://github.com/awatishreyash1-sudo" target="_blank">
+                        github.com/awatishreyash1-sudo
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fa-brands fa-linkedin"></i>
+                <div>
+                    <small>LinkedIn</small>
+                    <a href="https://www.linkedin.com/" target="_blank">
+                        LinkedIn Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>Send a Message</h2>
+
+            <form id="contactForm">
+
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" required placeholder="Enter your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" required placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" required placeholder="Enter subject">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" required placeholder="Write your message"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Send Message <i class="fa-solid fa-paper-plane"></i>
+                </button>
+
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container footer-content">
+        <a href="index.html" class="logo">Shreyash<span>.</span></a>
+        <p>Designed & Developed by Shreyash Awati</p>
+        <div class="footer-social">
+            <a href="https://github.com/awatishreyash1-sudo" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:your-email@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <small>© 2026 Shreyash Awati</small>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+
+<script>
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const subject = document.getElementById("subject").value;
+        const message = document.getElementById("message").value;
+
+        const recipient = "your-email@gmail.com";
+
+        const body =
+            "Name: " + name + "\n" +
+            "Email: " + email + "\n\n" +
+            "Message:\n" + message;
+
+        const mailURL =
+            "mailto:" + recipient +
+            "?subject=" + encodeURIComponent(subject) +
+            "&body=" + encodeURIComponent(body);
+
+        window.location.href = mailURL;
+
+    });
+</script>
+
+</body>
+</html>

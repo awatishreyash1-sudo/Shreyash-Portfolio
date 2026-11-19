@@ -1,0 +1,865 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output & Reference Code | Shreyash Awati</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #f7f8fc;
+            color: #252b3b;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        .navbar {
+            background: #fff;
+            border-bottom: 1px solid #e8eaf0;
+            padding: 16px 0;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 23px;
+            font-weight: 700;
+            color: #3158b5;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #555d70;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #3158b5;
+        }
+
+        .page-hero {
+            background: #eaf0ff;
+            padding: 55px 0;
+        }
+
+        .breadcrumb {
+            font-size: 13px;
+            color: #68738b;
+            margin-bottom: 18px;
+        }
+
+        .breadcrumb a {
+            color: #3158b5;
+        }
+
+        .assignment-tag {
+            display: inline-block;
+            background: #fff;
+            color: #3158b5;
+            padding: 7px 14px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .page-hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 36px;
+            margin-bottom: 12px;
+            color: #202b43;
+        }
+
+        .page-hero p {
+            color: #596782;
+            font-size: 15px;
+            line-height: 1.7;
+            max-width: 700px;
+        }
+
+        .main-section {
+            padding: 45px 0 65px;
+        }
+
+        .detail-card {
+            background: #fff;
+            border: 1px solid #e7eaf1;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .card-heading {
+            padding: 22px 25px;
+            border-bottom: 1px solid #e9ebf1;
+        }
+
+        .card-heading h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 21px;
+            margin-bottom: 6px;
+        }
+
+        .card-heading p {
+            color: #7b8292;
+            font-size: 13px;
+        }
+
+        .main-tabs {
+            display: flex;
+            gap: 8px;
+            padding: 15px 25px 0;
+            border-bottom: 1px solid #e9ebf1;
+        }
+
+        .main-tab {
+            border: none;
+            background: transparent;
+            padding: 13px 18px;
+            color: #68738b;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+
+        .main-tab.active {
+            color: #3158b5;
+            border-bottom-color: #3158b5;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 25px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .output-box {
+            background: #fbfcff;
+            border: 1px solid #e5e9f2;
+            border-radius: 9px;
+            padding: 25px;
+        }
+
+        .output-box h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        .output-box p {
+            color: #737c90;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .primary-btn {
+            border: none;
+            background: #3158b5;
+            color: white;
+            padding: 11px 19px;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .primary-btn:hover {
+            background: #24458f;
+        }
+
+        .result-area {
+            margin-top: 22px;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #e4e8f1;
+            border-radius: 7px;
+        }
+
+        .result-area h4 {
+            color: #3158b5;
+            margin-bottom: 15px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 9px;
+        }
+
+        .number-item {
+            background: #eaf0ff;
+            color: #3158b5;
+            padding: 10px 5px;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .result-info {
+            margin-top: 15px;
+            color: #596782;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .code-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .code-tab {
+            border: 1px solid #dfe4ef;
+            background: #fff;
+            color: #596782;
+            padding: 9px 16px;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .code-tab.active {
+            background: #eaf0ff;
+            color: #3158b5;
+            border-color: #cbd8fa;
+        }
+
+        .code-panel {
+            display: none;
+        }
+
+        .code-panel.active {
+            display: block;
+        }
+
+        .code-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .code-toolbar span {
+            font-size: 13px;
+            font-weight: 700;
+            color: #596782;
+        }
+
+        .code-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .small-btn {
+            border: 1px solid #dfe4ef;
+            background: #fff;
+            color: #3158b5;
+            padding: 7px 11px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .small-btn:hover {
+            background: #eaf0ff;
+        }
+
+        pre {
+            background: #202838;
+            color: #e8edf7;
+            padding: 20px;
+            border-radius: 7px;
+            overflow-x: auto;
+            line-height: 1.7;
+            font-size: 13px;
+            white-space: pre;
+        }
+
+        .info-note {
+            background: #f0f4ff;
+            border-left: 4px solid #3158b5;
+            padding: 15px 18px;
+            border-radius: 5px;
+            margin-top: 22px;
+            color: #53617c;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .bottom-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .outline-btn {
+            display: inline-block;
+            border: 1px solid #3158b5;
+            color: #3158b5;
+            padding: 10px 17px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .outline-btn:hover {
+            background: #eaf0ff;
+        }
+
+        .footer {
+            background: #202838;
+            color: #dce2ed;
+            padding: 25px 0;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .footer strong {
+            color: #fff;
+        }
+
+        @media (max-width: 850px) {
+            .nav-content {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .number-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page-hero h1 {
+                font-size: 28px;
+            }
+
+            .main-tabs {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .tab-content {
+                padding: 15px;
+            }
+
+            .card-heading {
+                padding: 18px;
+            }
+
+            .number-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .code-toolbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .bottom-actions {
+                flex-direction: column;
+            }
+
+            .bottom-actions a {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="container nav-content">
+        <a href="index.html" class="logo">Shreyash.</a>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#education">Education</a>
+            <a href="index.html#skills">Skills</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#certificates">Certificates</a>
+            <a href="assignments.html" class="active">Assignments</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </div>
+</header>
+
+
+<section class="page-hero">
+    <div class="container">
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            /
+            <a href="assignments.html">Assignments</a>
+            /
+            Assignment 07
+        </div>
+
+        <span class="assignment-tag">ASSIGNMENT 07</span>
+
+        <h1>Display All Prime Numbers Between 1 and 100</h1>
+
+        <p>
+            Write a JavaScript program to display all prime numbers
+            between 1 and 100 on an HTML page.
+        </p>
+
+    </div>
+</section>
+
+
+<main class="main-section">
+    <div class="container">
+
+        <div class="detail-card">
+
+            <div class="card-heading">
+                <h2>Project Demonstration</h2>
+                <p>
+                    View the working output and reference code
+                    for this assignment.
+                </p>
+            </div>
+
+
+            <!-- Main Tabs -->
+            <div class="main-tabs">
+
+                <button class="main-tab active"
+                        onclick="openMainTab('outputTab', this)">
+                    <i class="fa-solid fa-desktop"></i>
+                    View Output
+                </button>
+
+                <button class="main-tab"
+                        onclick="openMainTab('referenceTab', this)">
+                    <i class="fa-solid fa-code"></i>
+                    Reference Code
+                </button>
+
+            </div>
+
+
+            <!-- Output Tab -->
+            <div class="tab-content active" id="outputTab">
+
+                <div class="output-box">
+
+                    <h3>Prime Numbers from 1 to 100</h3>
+
+                    <p>
+                        Click the button below to display all prime
+                        numbers between 1 and 100.
+                    </p>
+
+                    <button class="primary-btn"
+                            onclick="displayPrimeNumbers()">
+                        <i class="fa-solid fa-play"></i>
+                        Display Prime Numbers
+                    </button>
+
+                    <div class="result-area">
+
+                        <h4>
+                            <i class="fa-solid fa-list-ol"></i>
+                            Output
+                        </h4>
+
+                        <div class="number-grid" id="numberResult">
+                            <p>Click the button to display the result.</p>
+                        </div>
+
+                        <div class="result-info" id="resultInfo"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Reference Code Tab -->
+            <div class="tab-content" id="referenceTab">
+
+                <div class="code-tabs">
+
+                    <button class="code-tab active"
+                            onclick="openCodeTab('htmlCode', this)">
+                        HTML Code
+                    </button>
+
+                    <button class="code-tab"
+                            onclick="openCodeTab('cssCode', this)">
+                        CSS Code
+                    </button>
+
+                    <button class="code-tab"
+                            onclick="openCodeTab('jsCode', this)">
+                        JavaScript Code
+                    </button>
+
+                </div>
+
+
+                <!-- HTML Code -->
+                <div class="code-panel active" id="htmlCode">
+
+                    <div class="code-toolbar">
+                        <span>HTML Reference Code</span>
+
+                        <div class="code-actions">
+                            <button class="small-btn"
+                                    onclick="copyCode('htmlSource')">
+                                <i class="fa-regular fa-copy"></i>
+                                Copy
+                            </button>
+
+                            <button class="small-btn"
+                                    onclick="downloadCode('htmlSource', 'index.html')">
+                                <i class="fa-solid fa-download"></i>
+                                Download
+                            </button>
+                        </div>
+                    </div>
+
+                    <pre><code id="htmlSource">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Prime Numbers&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h2&gt;Prime Numbers Between 1 and 100&lt;/h2&gt;
+
+    &lt;button onclick="displayPrimeNumbers()"&gt;
+        Display Prime Numbers
+    &lt;/button&gt;
+
+    &lt;div id="numberResult"&gt;&lt;/div&gt;
+
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                </div>
+
+
+                <!-- CSS Code -->
+                <div class="code-panel" id="cssCode">
+
+                    <div class="code-toolbar">
+                        <span>CSS Reference Code</span>
+
+                        <div class="code-actions">
+                            <button class="small-btn"
+                                    onclick="copyCode('cssSource')">
+                                <i class="fa-regular fa-copy"></i>
+                                Copy
+                            </button>
+
+                            <button class="small-btn"
+                                    onclick="downloadCode('cssSource', 'style.css')">
+                                <i class="fa-solid fa-download"></i>
+                                Download
+                            </button>
+                        </div>
+                    </div>
+
+                    <pre><code id="cssSource">body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f6fb;
+    padding: 30px;
+}
+
+h2 {
+    color: #3158b5;
+}
+
+button {
+    background-color: #3158b5;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #24458f;
+}
+
+#numberResult {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 2;
+}</code></pre>
+
+                </div>
+
+
+                <!-- JavaScript Code -->
+                <div class="code-panel" id="jsCode">
+
+                    <div class="code-toolbar">
+                        <span>JavaScript Reference Code</span>
+
+                        <div class="code-actions">
+                            <button class="small-btn"
+                                    onclick="copyCode('jsSource')">
+                                <i class="fa-regular fa-copy"></i>
+                                Copy
+                            </button>
+
+                            <button class="small-btn"
+                                    onclick="downloadCode('jsSource', 'script.js')">
+                                <i class="fa-solid fa-download"></i>
+                                Download
+                            </button>
+                        </div>
+                    </div>
+
+                    <pre><code id="jsSource">function displayPrimeNumbers() {
+
+    let result = "";
+    let count = 0;
+
+    for (let i = 2; i <= 100; i++) {
+
+        let isPrime = true;
+
+        for (let j = 2; j <= Math.sqrt(i); j++) {
+
+            if (i % j === 0) {
+                isPrime = false;
+                break;
+            }
+
+        }
+
+        if (isPrime) {
+            result += i + " ";
+            count++;
+        }
+
+    }
+
+    document.getElementById("numberResult").innerHTML = result;
+}</code></pre>
+
+                </div>
+
+
+                <div class="info-note">
+                    <strong>
+                        <i class="fa-solid fa-circle-info"></i>
+                        Note:
+                    </strong>
+
+                    A prime number is a number greater than 1 that
+                    has only two factors: 1 and itself.
+                    For example: 2, 3, 5, 7 and 11.
+                    Remember, 1 is not a prime number.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="bottom-actions">
+
+            <a href="assignment-6-output.html" class="outline-btn">
+                <i class="fa-solid fa-arrow-left"></i>
+                Previous Assignment
+            </a>
+
+            <a href="assignments.html" class="outline-btn">
+                All Assignments
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+    </div>
+</main>
+
+
+<footer class="footer">
+    <div class="container">
+        <p>
+            © 2026 <strong>Shreyash Awati</strong>.
+            All Rights Reserved.
+        </p>
+    </div>
+</footer>
+
+
+<script>
+
+    // Main Tabs
+    function openMainTab(tabId, button) {
+
+        document.querySelectorAll(".tab-content").forEach(tab => {
+            tab.classList.remove("active");
+        });
+
+        document.querySelectorAll(".main-tab").forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        document.getElementById(tabId).classList.add("active");
+        button.classList.add("active");
+    }
+
+
+    // Reference Code Tabs
+    function openCodeTab(tabId, button) {
+
+        document.querySelectorAll(".code-panel").forEach(panel => {
+            panel.classList.remove("active");
+        });
+
+        document.querySelectorAll(".code-tab").forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        document.getElementById(tabId).classList.add("active");
+        button.classList.add("active");
+    }
+
+
+    // Display Prime Numbers
+    function displayPrimeNumbers() {
+
+        let result = "";
+        let count = 0;
+
+        for (let i = 2; i <= 100; i++) {
+
+            let isPrime = true;
+
+            for (let j = 2; j <= Math.sqrt(i); j++) {
+
+                if (i % j === 0) {
+                    isPrime = false;
+                    break;
+                }
+
+            }
+
+            if (isPrime) {
+                result += `<div class="number-item">${i}</div>`;
+                count++;
+            }
+
+        }
+
+        document.getElementById("numberResult").innerHTML = result;
+
+        document.getElementById("resultInfo").innerHTML =
+            "Total Prime Numbers: " + count + " | Range: 1 to 100";
+    }
+
+
+    // Copy Code
+    function copyCode(elementId) {
+
+        const code = document.getElementById(elementId).innerText;
+
+        navigator.clipboard.writeText(code)
+            .then(() => {
+                alert("Code copied successfully!");
+            })
+            .catch(() => {
+                alert("Unable to copy code. Please select and copy manually.");
+            });
+
+    }
+
+
+    // Download Code
+    function downloadCode(elementId, fileName) {
+
+        const code = document.getElementById(elementId).innerText;
+
+        const blob = new Blob([code], {
+            type: "text/plain"
+        });
+
+        const link = document.createElement("a");
+
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+
+        document.body.appendChild(link);
+        link.click();
+
+        document.body.removeChild(link);
+
+        URL.revokeObjectURL(link.href);
+
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,898 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Output & Reference Code | Shreyash Awati</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        .project-tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .project-tab {
+            padding: 12px 22px;
+            border: 1px solid #dce0e8;
+            border-radius: 8px;
+            background: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+        }
+
+        .project-tab.active {
+            background: #eaf0ff;
+            color: #3158b5;
+            border-color: #5277d8;
+        }
+
+        .project-panel {
+            display: none;
+        }
+
+        .project-panel.active {
+            display: block;
+        }
+
+        .output-box {
+            padding: 25px;
+            background: #f5f6f8;
+            border: 1px solid #e3e6ed;
+            border-radius: 12px;
+        }
+
+        .demo-form {
+            max-width: 680px;
+            margin: auto;
+            padding: 30px;
+            background: #fff;
+            border: 1px solid #e2e5eb;
+            border-radius: 12px;
+        }
+
+        .demo-form h2 {
+            text-align: center;
+            color: #3158b5;
+            margin-bottom: 8px;
+        }
+
+        .demo-form .intro {
+            text-align: center;
+            color: #687080;
+            margin-bottom: 25px;
+        }
+
+        .demo-group {
+            margin-bottom: 16px;
+        }
+
+        .demo-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+        }
+
+        .demo-group input,
+        .demo-group select,
+        .demo-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dce0e8;
+            border-radius: 7px;
+            font: inherit;
+        }
+
+        .demo-group input:focus,
+        .demo-group select:focus,
+        .demo-group textarea:focus {
+            outline: none;
+            border-color: #5277d8;
+        }
+
+        .demo-submit {
+            width: 100%;
+            padding: 13px;
+            background: #3158b5;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .demo-submit:hover {
+            background: #24458f;
+        }
+
+        .demo-message {
+            display: none;
+            margin-top: 18px;
+            padding: 14px;
+            background: #eaf8ef;
+            color: #207044;
+            border-radius: 7px;
+        }
+
+        .code-wrapper {
+            border: 1px solid #e2e5eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            background: #fbfcfe;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: #f1f3f7;
+            border-bottom: 1px solid #e2e5eb;
+            flex-wrap: wrap;
+        }
+
+        .code-header h3 {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .code-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .code-actions button {
+            padding: 8px 12px;
+            border: 1px solid #dce0e8;
+            border-radius: 6px;
+            background: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-size: 13px;
+        }
+
+        .code-content {
+            overflow-x: auto;
+        }
+
+        .code-content pre {
+            margin: 0;
+            padding: 20px;
+            min-width: max-content;
+            color: #263247;
+            font: 13px/1.8 Consolas, monospace;
+            white-space: pre;
+        }
+
+        .file-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .file-tab {
+            padding: 10px 18px;
+            background: #fff;
+            border: 1px solid #dce0e8;
+            border-radius: 7px;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+        }
+
+        .file-tab.active {
+            background: #eaf0ff;
+            color: #3158b5;
+            border-color: #5277d8;
+        }
+
+        .code-panel {
+            display: none;
+        }
+
+        .code-panel.active {
+            display: block;
+        }
+
+        .info-note {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f3f6fc;
+            color: #48556b;
+        }
+
+        @media(max-width: 600px) {
+            .demo-form {
+                padding: 18px;
+            }
+
+            .output-box {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+            Shreyash<span>.</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="education.html">Education</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="certifications.html">Certificates</a>
+            <a href="assignments.html" class="active">Assignments</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <a href="resume/Shreyash-Resume.pdf" class="nav-resume" target="_blank">
+            Resume <i class="fa-solid fa-download"></i>
+        </a>
+
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="page-hero">
+    <div class="container">
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> /
+            <a href="assignments.html">Assignments</a> /
+            <a href="assignment-1.html">Assignment 01</a> /
+            Output & Code
+        </div>
+
+        <span class="section-tag">ASSIGNMENT 01</span>
+
+        <h1>Online Examination Form</h1>
+
+        <p>
+            Project Output and Complete Reference Source Code
+        </p>
+
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <div class="detail-card">
+
+            <h2>
+                <i class="fa-solid fa-laptop-code"></i>
+                Project Demonstration
+            </h2>
+
+            <p>
+                View the working output of the Online Examination Form
+                and explore its HTML, CSS and JavaScript source code.
+            </p>
+
+            <!-- MAIN TABS -->
+            <div class="project-tabs">
+
+                <button class="project-tab active" data-panel="output">
+                    <i class="fa-solid fa-eye"></i> View Output
+                </button>
+
+                <button class="project-tab" data-panel="reference">
+                    <i class="fa-solid fa-code"></i> Reference Code
+                </button>
+
+            </div>
+
+            <!-- OUTPUT PANEL -->
+            <div class="project-panel active" id="output">
+
+                <div class="output-box">
+
+                    <form class="demo-form" id="examForm">
+
+                        <h2>Online Examination Registration</h2>
+
+                        <p class="intro">
+                            Fill in your details to register for examination.
+                        </p>
+
+                        <div class="demo-group">
+                            <label for="studentName">Student Name *</label>
+                            <input type="text" id="studentName"
+                                placeholder="Enter your full name"
+                                minlength="3" required>
+                        </div>
+
+                        <div class="demo-group">
+                            <label for="rollNumber">Roll Number *</label>
+                            <input type="text" id="rollNumber"
+                                placeholder="Enter roll number" required>
+                        </div>
+
+                        <div class="demo-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email"
+                                placeholder="example@email.com" required>
+                        </div>
+
+                        <div class="demo-group">
+                            <label for="mobile">Mobile Number *</label>
+                            <input type="tel" id="mobile"
+                                placeholder="10-digit mobile number"
+                                pattern="[6-9][0-9]{9}"
+                                maxlength="10" required>
+                        </div>
+
+                        <div class="demo-group">
+                            <label for="course">Select Course *</label>
+                            <select id="course" required>
+                                <option value="">Select Course</option>
+                                <option>MCA</option>
+                                <option>BCA</option>
+                                <option>BBA</option>
+                                <option>B.Sc.</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="demo-group">
+                            <label for="semester">Semester *</label>
+                            <select id="semester" required>
+                                <option value="">Select Semester</option>
+                                <option>Semester 1</option>
+                                <option>Semester 2</option>
+                                <option>Semester 3</option>
+                                <option>Semester 4</option>
+                                <option>Semester 5</option>
+                                <option>Semester 6</option>
+                            </select>
+                        </div>
+
+                        <div class="demo-group">
+                            <label for="examName">Examination Name *</label>
+                            <input type="text" id="examName"
+                                placeholder="Enter examination name" required>
+                        </div>
+
+                        <div class="demo-group">
+                            <label for="examDate">Examination Date *</label>
+                            <input type="date" id="examDate" required>
+                        </div>
+
+                        <div class="demo-group">
+                            <label for="examType">Examination Type *</label>
+                            <select id="examType" required>
+                                <option value="">Select Type</option>
+                                <option>Online</option>
+                                <option>Offline</option>
+                            </select>
+                        </div>
+
+                        <div class="demo-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" rows="3"
+                                placeholder="Enter your address"></textarea>
+                        </div>
+
+                        <button type="submit" class="demo-submit">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            Submit Examination Form
+                        </button>
+
+                        <div id="formMessage" class="demo-message"
+                            role="status" aria-live="polite"></div>
+
+                    </form>
+
+                </div>
+
+                <div class="info-note">
+                    <strong>How to test:</strong>
+                    Enter sample student details, select a course and
+                    examination date, then click Submit Examination Form.
+                    The page will display a confirmation message.
+                </div>
+
+            </div>
+
+            <!-- REFERENCE CODE PANEL -->
+            <div class="project-panel" id="reference">
+
+                <h2 style="margin-top:20px;">
+                    <i class="fa-solid fa-file-code"></i>
+                    Source Code Files
+                </h2>
+
+                <p>
+                    Select a file below to view, copy or download its
+                    complete source code.
+                </p>
+
+                <div class="file-tabs">
+
+                    <button class="file-tab active" data-file="html">
+                        HTML
+                    </button>
+
+                    <button class="file-tab" data-file="css">
+                        CSS
+                    </button>
+
+                    <button class="file-tab" data-file="js">
+                        JavaScript
+                    </button>
+
+                </div>
+
+                <!-- HTML SOURCE -->
+                <div class="code-panel active" id="html">
+
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <h3>index.html</h3>
+
+                            <div class="code-actions">
+                                <button onclick="copyCode('htmlCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('htmlCode','index.html')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+<pre><code id="htmlCode">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Online Examination Form&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;div class="container"&gt;
+
+        &lt;h1&gt;Online Examination Registration&lt;/h1&gt;
+        &lt;p&gt;Fill in your details to register for examination.&lt;/p&gt;
+
+        &lt;form id="examForm"&gt;
+
+            &lt;label for="studentName"&gt;Student Name&lt;/label&gt;
+            &lt;input type="text" id="studentName"
+                placeholder="Enter your full name"
+                minlength="3" required&gt;
+
+            &lt;label for="rollNumber"&gt;Roll Number&lt;/label&gt;
+            &lt;input type="text" id="rollNumber"
+                placeholder="Enter roll number" required&gt;
+
+            &lt;label for="email"&gt;Email Address&lt;/label&gt;
+            &lt;input type="email" id="email"
+                placeholder="Enter email" required&gt;
+
+            &lt;label for="mobile"&gt;Mobile Number&lt;/label&gt;
+            &lt;input type="tel" id="mobile"
+                pattern="[6-9][0-9]{9}"
+                maxlength="10" required&gt;
+
+            &lt;label for="course"&gt;Select Course&lt;/label&gt;
+            &lt;select id="course" required&gt;
+                &lt;option value=""&gt;Select Course&lt;/option&gt;
+                &lt;option&gt;MCA&lt;/option&gt;
+                &lt;option&gt;BCA&lt;/option&gt;
+                &lt;option&gt;BBA&lt;/option&gt;
+                &lt;option&gt;B.Sc.&lt;/option&gt;
+            &lt;/select&gt;
+
+            &lt;label for="semester"&gt;Semester&lt;/label&gt;
+            &lt;select id="semester" required&gt;
+                &lt;option value=""&gt;Select Semester&lt;/option&gt;
+                &lt;option&gt;Semester 1&lt;/option&gt;
+                &lt;option&gt;Semester 2&lt;/option&gt;
+                &lt;option&gt;Semester 3&lt;/option&gt;
+                &lt;option&gt;Semester 4&lt;/option&gt;
+            &lt;/select&gt;
+
+            &lt;label for="examName"&gt;Examination Name&lt;/label&gt;
+            &lt;input type="text" id="examName" required&gt;
+
+            &lt;label for="examDate"&gt;Examination Date&lt;/label&gt;
+            &lt;input type="date" id="examDate" required&gt;
+
+            &lt;label for="examType"&gt;Examination Type&lt;/label&gt;
+            &lt;select id="examType" required&gt;
+                &lt;option value=""&gt;Select Type&lt;/option&gt;
+                &lt;option&gt;Online&lt;/option&gt;
+                &lt;option&gt;Offline&lt;/option&gt;
+            &lt;/select&gt;
+
+            &lt;label for="address"&gt;Address&lt;/label&gt;
+            &lt;textarea id="address" rows="3"&gt;&lt;/textarea&gt;
+
+            &lt;button type="submit"&gt;Submit Form&lt;/button&gt;
+
+        &lt;/form&gt;
+
+        &lt;div id="message"&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CSS SOURCE -->
+                <div class="code-panel" id="css">
+
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <h3>style.css</h3>
+
+                            <div class="code-actions">
+                                <button onclick="copyCode('cssCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('cssCode','style.css')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+<pre><code id="cssCode">* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6fa;
+    color: #333;
+    padding: 30px 15px;
+}
+
+.container {
+    max-width: 650px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+h1 {
+    text-align: center;
+    color: #3158b5;
+    margin-bottom: 10px;
+}
+
+p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin: 15px 0 7px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #3158b5;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 22px;
+    border: none;
+    border-radius: 6px;
+    background: #3158b5;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #24458f;
+}
+
+#message {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 6px;
+    color: #207044;
+    background: #eaf8ef;
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JAVASCRIPT SOURCE -->
+                <div class="code-panel" id="js">
+
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <h3>script.js</h3>
+
+                            <div class="code-actions">
+                                <button onclick="copyCode('jsCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('jsCode','script.js')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+<pre><code id="jsCode">const examForm = document.getElementById("examForm");
+const message = document.getElementById("message");
+const examDate = document.getElementById("examDate");
+
+// Set today's date as minimum date
+const today = new Date();
+
+const localToday = new Date(
+    today.getTime() - today.getTimezoneOffset() * 60000
+).toISOString().split("T")[0];
+
+examDate.min = localToday;
+
+// Handle form submission
+examForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    // Check form validation
+    if (!examForm.checkValidity()) {
+        examForm.reportValidity();
+        return;
+    }
+
+    // Get student information
+    const studentName =
+        document.getElementById("studentName").value.trim();
+
+    const rollNumber =
+        document.getElementById("rollNumber").value.trim();
+
+    const examName =
+        document.getElementById("examName").value.trim();
+
+    if (!studentName || !rollNumber || !examName) {
+        message.textContent = "Please fill all required fields.";
+        message.style.display = "block";
+        return;
+    }
+
+    // Show success message
+    message.textContent =
+        "Registration Successful! Thank you, " +
+        studentName +
+        ". Your examination form has been validated successfully.";
+
+    message.style.display = "block";
+
+    // Reset form
+    examForm.reset();
+    examDate.min = localToday;
+
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="info-note">
+            <strong>Note:</strong>
+            This is a client-side demonstration. Form information is
+            validated in the browser and is not saved to a database.
+        </div>
+
+        <div class="center-button" style="margin-top:30px;">
+
+            <a href="assignment-1.html" class="btn btn-primary">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Assignment
+            </a>
+
+            <a href="assignments.html" class="btn btn-primary">
+                All Assignments
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container footer-content">
+
+        <a href="index.html" class="logo">
+            Shreyash<span>.</span>
+        </a>
+
+        <p>Designed & Developed by Shreyash Awati</p>
+
+        <small>© 2026 Shreyash Awati</small>
+
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+
+<script>
+    // Main Output and Reference Code tabs
+    const projectTabs = document.querySelectorAll(".project-tab");
+    const projectPanels = document.querySelectorAll(".project-panel");
+
+    projectTabs.forEach(function(tab) {
+        tab.addEventListener("click", function() {
+
+            projectTabs.forEach(item => item.classList.remove("active"));
+            projectPanels.forEach(item => item.classList.remove("active"));
+
+            this.classList.add("active");
+
+            document.getElementById(this.dataset.panel)
+                .classList.add("active");
+        });
+    });
+
+    // HTML, CSS and JavaScript file tabs
+    const fileTabs = document.querySelectorAll(".file-tab");
+    const codePanels = document.querySelectorAll(".code-panel");
+
+    fileTabs.forEach(function(tab) {
+        tab.addEventListener("click", function() {
+
+            fileTabs.forEach(item => item.classList.remove("active"));
+            codePanels.forEach(item => item.classList.remove("active"));
+
+            this.classList.add("active");
+
+            document.getElementById(this.dataset.file)
+                .classList.add("active");
+        });
+    });
+
+    // Copy code
+    function copyCode(elementId) {
+
+        const code = document.getElementById(elementId).textContent;
+
+        navigator.clipboard.writeText(code)
+            .then(() => alert("Code copied successfully!"))
+            .catch(() => alert("Copy failed. Please copy manually."));
+    }
+
+    // Download code
+    function downloadCode(elementId, fileName) {
+
+        const code = document.getElementById(elementId).textContent;
+
+        const blob = new Blob([code], {
+            type: "text/plain"
+        });
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+
+        link.href = url;
+        link.download = fileName;
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        URL.revokeObjectURL(url);
+    }
+
+    // Working examination form
+    const examForm = document.getElementById("examForm");
+    const formMessage = document.getElementById("formMessage");
+    const examDate = document.getElementById("examDate");
+
+    const today = new Date();
+
+    const localToday = new Date(
+        today.getTime() - today.getTimezoneOffset() * 60000
+    ).toISOString().split("T")[0];
+
+    examDate.min = localToday;
+
+    examForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        if (!examForm.checkValidity()) {
+            examForm.reportValidity();
+            return;
+        }
+
+        const name = document.getElementById("studentName").value.trim();
+        const roll = document.getElementById("rollNumber").value.trim();
+        const exam = document.getElementById("examName").value.trim();
+
+        if (!name || !roll || !exam) {
+            return;
+        }
+
+        formMessage.textContent =
+            "Registration Successful! Thank you, " + name +
+            ". Roll Number: " + roll +
+            ". Examination: " + exam +
+            ". Your form has been validated successfully.";
+
+        formMessage.style.display = "block";
+
+        examForm.reset();
+        examDate.min = localToday;
+
+    });
+</script>
+
+</body>
+</html>

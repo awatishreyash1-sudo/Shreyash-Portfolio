@@ -1,0 +1,670 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Output & Reference Code | Shreyash Awati</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        .project-tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .project-tab {
+            padding: 12px 22px;
+            border: 1px solid #dce0e8;
+            border-radius: 8px;
+            background: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+        }
+
+        .project-tab.active {
+            background: #eaf0ff;
+            color: #3158b5;
+            border-color: #5277d8;
+        }
+
+        .project-panel {
+            display: none;
+        }
+
+        .project-panel.active {
+            display: block;
+        }
+
+        .output-box {
+            padding: 25px;
+            background: #f5f6f8;
+            border: 1px solid #e3e6ed;
+            border-radius: 12px;
+        }
+
+        .demo-form {
+            max-width: 680px;
+            margin: auto;
+            padding: 30px;
+            background: #fff;
+            border: 1px solid #e2e5eb;
+            border-radius: 12px;
+        }
+
+        .demo-form h2 {
+            text-align: center;
+            color: #3158b5;
+            margin-bottom: 8px;
+        }
+
+        .demo-form .intro {
+            text-align: center;
+            color: #687080;
+            margin-bottom: 25px;
+        }
+
+        .demo-button {
+            width: 100%;
+            padding: 13px;
+            background: #3158b5;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .demo-button:hover {
+            background: #24458f;
+        }
+
+        .date-result {
+            margin-top: 22px;
+            padding: 18px;
+            background: #f3f6fc;
+            border: 1px solid #dce0e8;
+            border-radius: 8px;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .date-result p {
+            margin: 5px 0;
+            color: #48556b;
+        }
+
+        .date-result strong {
+            color: #3158b5;
+        }
+
+        .code-wrapper {
+            border: 1px solid #e2e5eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            background: #fbfcfe;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: #f1f3f7;
+            border-bottom: 1px solid #e2e5eb;
+            flex-wrap: wrap;
+        }
+
+        .code-header h3 {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .code-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .code-actions button {
+            padding: 8px 12px;
+            border: 1px solid #dce0e8;
+            border-radius: 6px;
+            background: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-size: 13px;
+        }
+
+        .code-content {
+            overflow-x: auto;
+        }
+
+        .code-content pre {
+            margin: 0;
+            padding: 20px;
+            min-width: max-content;
+            color: #263247;
+            font: 13px/1.8 Consolas, monospace;
+            white-space: pre;
+        }
+
+        .file-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .file-tab {
+            padding: 10px 18px;
+            background: #fff;
+            border: 1px solid #dce0e8;
+            border-radius: 7px;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+        }
+
+        .file-tab.active {
+            background: #eaf0ff;
+            color: #3158b5;
+            border-color: #5277d8;
+        }
+
+        .code-panel {
+            display: none;
+        }
+
+        .code-panel.active {
+            display: block;
+        }
+
+        .info-note {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f3f6fc;
+            color: #48556b;
+        }
+
+        @media(max-width: 600px) {
+            .demo-form {
+                padding: 18px;
+            }
+
+            .output-box {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+            Shreyash<span>.</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="education.html">Education</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="certifications.html">Certificates</a>
+            <a href="assignments.html" class="active">Assignments</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <a href="resume/Shreyash-Resume.pdf" class="nav-resume" target="_blank">
+            Resume <i class="fa-solid fa-download"></i>
+        </a>
+
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="page-hero">
+    <div class="container">
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> /
+            <a href="assignments.html">Assignments</a> /
+            <a href="assignment-12.html">Assignment 12</a> /
+            Output & Code
+        </div>
+
+        <span class="section-tag">ASSIGNMENT 12</span>
+
+        <h1>Current Date and Time</h1>
+
+        <p>
+            Project Output and Complete Reference Source Code
+        </p>
+
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <div class="detail-card">
+
+            <h2>
+                <i class="fa-solid fa-laptop-code"></i>
+                Project Demonstration
+            </h2>
+
+            <p>
+                View the working output of the JavaScript Date and Time
+                program and explore its HTML, CSS and JavaScript source code.
+            </p>
+
+            <!-- MAIN TABS -->
+            <div class="project-tabs">
+
+                <button class="project-tab active" data-panel="output">
+                    <i class="fa-solid fa-eye"></i> View Output
+                </button>
+
+                <button class="project-tab" data-panel="reference">
+                    <i class="fa-solid fa-code"></i> Reference Code
+                </button>
+
+            </div>
+
+            <!-- OUTPUT PANEL -->
+            <div class="project-panel active" id="output">
+
+                <div class="output-box">
+
+                    <div class="demo-form">
+
+                        <h2>Current Date and Time</h2>
+
+                        <p class="intro">
+                            Click the button below to display the current
+                            date and time in a message box.
+                        </p>
+
+                        <button type="button" class="demo-button" id="showDateBtn">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            Show Current Date & Time
+                        </button>
+
+                        <div class="date-result">
+                            <p id="dateResult">
+                                <strong>Current Date:</strong> Not displayed yet
+                            </p>
+
+                            <p id="timeResult">
+                                <strong>Current Time:</strong> Not displayed yet
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="info-note">
+                    <strong>How to test:</strong>
+                    Click the Show Current Date & Time button.
+                    A JavaScript alert message box will display the
+                    current date and time. The same information will
+                    also appear on the page.
+                </div>
+
+            </div>
+
+            <!-- REFERENCE CODE PANEL -->
+            <div class="project-panel" id="reference">
+
+                <h2 style="margin-top:20px;">
+                    <i class="fa-solid fa-file-code"></i>
+                    Source Code Files
+                </h2>
+
+                <p>
+                    Select a file below to view, copy or download its
+                    complete source code.
+                </p>
+
+                <div class="file-tabs">
+
+                    <button class="file-tab active" data-file="html">
+                        HTML
+                    </button>
+
+                    <button class="file-tab" data-file="css">
+                        CSS
+                    </button>
+
+                    <button class="file-tab" data-file="js">
+                        JavaScript
+                    </button>
+
+                </div>
+
+                <!-- HTML SOURCE -->
+                <div class="code-panel active" id="html">
+
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <h3>index.html</h3>
+
+                            <div class="code-actions">
+                                <button onclick="copyCode('htmlCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('htmlCode','index.html')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+<pre><code id="htmlCode">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Current Date and Time&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;div class="container"&gt;
+
+        &lt;h1&gt;Current Date and Time&lt;/h1&gt;
+
+        &lt;p&gt;
+            Click the button to display current date and time.
+        &lt;/p&gt;
+
+        &lt;button onclick="showDateTime()"&gt;
+            Show Current Date &amp; Time
+        &lt;/button&gt;
+
+    &lt;/div&gt;
+
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CSS SOURCE -->
+                <div class="code-panel" id="css">
+
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <h3>style.css</h3>
+
+                            <div class="code-actions">
+                                <button onclick="copyCode('cssCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('cssCode','style.css')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+<pre><code id="cssCode">* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6fa;
+    color: #333;
+    padding: 30px 15px;
+}
+
+.container {
+    max-width: 650px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+h1 {
+    text-align: center;
+    color: #3158b5;
+    margin-bottom: 15px;
+}
+
+p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 6px;
+    background: #3158b5;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #24458f;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JAVASCRIPT SOURCE -->
+                <div class="code-panel" id="js">
+
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <h3>script.js</h3>
+
+                            <div class="code-actions">
+                                <button onclick="copyCode('jsCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('jsCode','script.js')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+<pre><code id="jsCode">function showDateTime() {
+
+    // Create a Date object
+    const currentDate = new Date();
+
+    // Get current date
+    const date = currentDate.toLocaleDateString();
+
+    // Get current time
+    const time = currentDate.toLocaleTimeString();
+
+    // Display date and time in message box
+    alert(
+        "Current Date: " + date +
+        "\nCurrent Time: " + time
+    );
+
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="info-note">
+            <strong>Note:</strong>
+            This program uses JavaScript's built-in Date object to get
+            the current date and time from the user's device.
+        </div>
+
+        <div class="center-button" style="margin-top:30px;">
+
+            <a href="assignment-12.html" class="btn btn-primary">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Assignment
+            </a>
+
+            <a href="assignments.html" class="btn btn-primary">
+                All Assignments
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container footer-content">
+
+        <a href="index.html" class="logo">
+            Shreyash<span>.</span>
+        </a>
+
+        <p>Designed & Developed by Shreyash Awati</p>
+
+        <small>© 2026 Shreyash Awati</small>
+
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+
+<script>
+    // Main Output and Reference Code tabs
+    const projectTabs = document.querySelectorAll(".project-tab");
+    const projectPanels = document.querySelectorAll(".project-panel");
+
+    projectTabs.forEach(function(tab) {
+        tab.addEventListener("click", function() {
+
+            projectTabs.forEach(item => item.classList.remove("active"));
+            projectPanels.forEach(item => item.classList.remove("active"));
+
+            this.classList.add("active");
+
+            document.getElementById(this.dataset.panel)
+                .classList.add("active");
+        });
+    });
+
+    // HTML, CSS and JavaScript file tabs
+    const fileTabs = document.querySelectorAll(".file-tab");
+    const codePanels = document.querySelectorAll(".code-panel");
+
+    fileTabs.forEach(function(tab) {
+        tab.addEventListener("click", function() {
+
+            fileTabs.forEach(item => item.classList.remove("active"));
+            codePanels.forEach(item => item.classList.remove("active"));
+
+            this.classList.add("active");
+
+            document.getElementById(this.dataset.file)
+                .classList.add("active");
+        });
+    });
+
+    // Copy code
+    function copyCode(elementId) {
+
+        const code = document.getElementById(elementId).textContent;
+
+        navigator.clipboard.writeText(code)
+            .then(() => alert("Code copied successfully!"))
+            .catch(() => alert("Copy failed. Please copy manually."));
+    }
+
+    // Download code
+    function downloadCode(elementId, fileName) {
+
+        const code = document.getElementById(elementId).textContent;
+
+        const blob = new Blob([code], {
+            type: "text/plain"
+        });
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+
+        link.href = url;
+        link.download = fileName;
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        URL.revokeObjectURL(url);
+    }
+
+    // Display current date and time
+    function showDateTime() {
+
+        const currentDate = new Date();
+
+        const date = currentDate.toLocaleDateString();
+        const time = currentDate.toLocaleTimeString();
+
+        // Show message box
+        alert(
+            "Current Date: " + date +
+            "\nCurrent Time: " + time
+        );
+
+        // Display date and time on webpage
+        document.getElementById("dateResult").innerHTML =
+            "<strong>Current Date:</strong> " + date;
+
+        document.getElementById("timeResult").innerHTML =
+            "<strong>Current Time:</strong> " + time;
+    }
+
+    // Button event
+    document.getElementById("showDateBtn")
+        .addEventListener("click", showDateTime);
+
+</script>
+
+</body>
+</html>

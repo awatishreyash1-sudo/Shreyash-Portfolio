@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Assignment 22 | Shreyash Awati</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        .demo-card {
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .demo-card label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .demo-card input,
+        .demo-card textarea {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #dce2ee;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 15px;
+            outline: none;
+            margin-bottom: 18px;
+            background: #fff;
+        }
+
+        .demo-card input:focus,
+        .demo-card textarea:focus {
+            border-color: #3158b5;
+            box-shadow: 0 0 0 3px rgba(49, 88, 181, 0.1);
+        }
+
+        .demo-card textarea {
+            min-height: 260px;
+            resize: vertical;
+            line-height: 1.8;
+            font-family: monospace;
+            transition: background 0.2s ease;
+        }
+
+        .demo-card button {
+            border: none;
+            background: #3158b5;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 22px;
+        }
+
+        .demo-card button:hover {
+            background: #24458f;
+        }
+
+        .demo-card .output-label {
+            margin-top: 5px;
+        }
+
+        .code-content {
+            position: relative;
+        }
+
+        .code-content pre {
+            overflow-x: auto;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f5f7fb;
+            line-height: 1.6;
+        }
+
+        .code-actions {
+            display: flex;
+            gap: 10px;
+            margin: 12px 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .code-actions button {
+            border: none;
+            padding: 9px 15px;
+            border-radius: 8px;
+            background: #3158b5;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .code-tab-buttons,
+        .main-tab-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .code-tab-buttons button,
+        .main-tab-buttons button {
+            border: 1px solid #dce2ee;
+            background: #fff;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .code-tab-buttons button.active,
+        .main-tab-buttons button.active {
+            background: #3158b5;
+            color: #fff;
+            border-color: #3158b5;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .reference-panel {
+            display: none;
+        }
+
+        .reference-panel.active {
+            display: block;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 11px 20px;
+            background: #3158b5;
+            color: white;
+            text-decoration: none;
+            border-radius: 9px;
+            font-weight: 600;
+        }
+
+        @media(max-width: 600px) {
+            .demo-card {
+                padding: 10px;
+            }
+
+            .code-tab-buttons button,
+            .main-tab-buttons button {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<header class="header">
+    <nav class="navbar">
+        <a href="index.html" class="logo">Shreyash<span>.</span></a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#education">Education</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#certificates">Certificates</a></li>
+            <li><a href="assignments.html" class="active">Assignments</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+
+        <a href="resume.pdf" class="resume-btn" target="_blank">Resume</a>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="page-hero">
+    <div class="container">
+        <p class="breadcrumb">
+            <a href="index.html">Home</a> /
+            <a href="assignments.html">Assignments</a> /
+            Assignment 22
+        </p>
+
+        <span class="assignment-tag">ASSIGNMENT 22</span>
+
+        <h1>Multiplication Table Generator</h1>
+
+        <p>
+            Create an HTML page with a text box, a Print Table button,
+            and a text area to display the multiplication table of an entered number.
+        </p>
+    </div>
+</section>
+
+<!-- Assignment Section -->
+<section class="section">
+    <div class="container">
+
+        <div class="detail-card">
+
+            <div class="assignment-heading">
+                <h2>Assignment Output & Reference Code</h2>
+                <p>View the working output and explore the source code.</p>
+            </div>
+
+            <!-- Main Tabs -->
+            <div class="main-tab-buttons">
+                <button class="active" onclick="showMainTab('output', this)">
+                    <i class="fa-solid fa-desktop"></i> View Output
+                </button>
+
+                <button onclick="showMainTab('reference', this)">
+                    <i class="fa-solid fa-code"></i> Reference Code
+                </button>
+            </div>
+
+            <!-- Output Panel -->
+            <div id="output" class="tab-panel active">
+
+                <div class="output-box">
+                    <div class="demo-card">
+
+                        <h3>Multiplication Table Generator</h3>
+
+                        <p>Enter a number to print its multiplication table.</p>
+
+                        <label for="numberInput">Enter Number</label>
+
+                        <input
+                            type="text"
+                            id="numberInput"
+                            placeholder="Enter a number"
+                        >
+
+                        <button onclick="printTable()">
+                            <i class="fa-solid fa-table"></i>
+                            Print Table
+                        </button>
+
+                        <label class="output-label" for="tableOutput">
+                            Multiplication Table
+                        </label>
+
+                        <textarea
+                            id="tableOutput"
+                            placeholder="Your multiplication table will appear here..."
+                            readonly
+                        ></textarea>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Reference Code Panel -->
+            <div id="reference" class="tab-panel">
+
+                <div class="code-tab-buttons">
+                    <button class="active" onclick="showCodeTab('htmlCode', this)">HTML</button>
+                    <button onclick="showCodeTab('cssCode', this)">CSS</button>
+                    <button onclick="showCodeTab('jsCode', this)">JavaScript</button>
+                </div>
+
+                <!-- HTML Code -->
+                <div id="htmlCode" class="reference-panel active">
+
+                    <div class="code-content">
+                        <pre><code id="htmlSource">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Multiplication Table&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h2&gt;Multiplication Table Generator&lt;/h2&gt;
+
+    &lt;input type="text" id="numberInput"
+        placeholder="Enter a number"&gt;
+
+    &lt;button onclick="printTable()"&gt;
+        Print Table
+    &lt;/button&gt;
+
+    &lt;textarea id="tableOutput" readonly&gt;&lt;/textarea&gt;
+
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+
+                    <div class="code-actions">
+                        <button onclick="copyCode('htmlSource')">
+                            <i class="fa-regular fa-copy"></i> Copy Code
+                        </button>
+
+                        <button onclick="downloadCode('htmlSource', 'index.html')">
+                            <i class="fa-solid fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CSS Code -->
+                <div id="cssCode" class="reference-panel">
+
+                    <div class="code-content">
+                        <pre><code id="cssSource">body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 30px;
+    background: #f4f6fb;
+}
+
+input {
+    padding: 10px;
+    width: 220px;
+    margin: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background: #3158b5;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+textarea {
+    display: block;
+    width: 250px;
+    height: 250px;
+    margin: 20px auto;
+    padding: 10px;
+}</code></pre>
+                    </div>
+
+                    <div class="code-actions">
+                        <button onclick="copyCode('cssSource')">
+                            <i class="fa-regular fa-copy"></i> Copy Code
+                        </button>
+
+                        <button onclick="downloadCode('cssSource', 'style.css')">
+                            <i class="fa-solid fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+
+                <!-- JavaScript Code -->
+                <div id="jsCode" class="reference-panel">
+
+                    <div class="code-content">
+                        <pre><code id="jsSource">function printTable() {
+    const input = document.getElementById("numberInput");
+    const output = document.getElementById("tableOutput");
+
+    const value = input.value.trim();
+    const number = Number(value);
+
+    if (value === "" || !Number.isFinite(number)) {
+        output.style.backgroundColor = "red";
+        output.value = "";
+        alert("Please enter a valid number!");
+        return;
+    }
+
+    output.style.backgroundColor = "white";
+
+    let table = "";
+
+    for (let i = 1; i &lt;= 10; i++) {
+        table += number + " x " + i + " = " +
+                 (number * i) + "\n";
+    }
+
+    output.value = table;
+}</code></pre>
+                    </div>
+
+                    <div class="code-actions">
+                        <button onclick="copyCode('jsSource')">
+                            <i class="fa-regular fa-copy"></i> Copy Code
+                        </button>
+
+                        <button onclick="downloadCode('jsSource', 'script.js')">
+                            <i class="fa-solid fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Note -->
+            <div class="info-note">
+                <h4><i class="fa-solid fa-circle-info"></i> Important Note</h4>
+
+                <p>
+                    Enter a valid number and click the Print Table button.
+                    The multiplication table from 1 to 10 will be displayed
+                    in the text area. If the input is empty or invalid,
+                    the text area background changes to red and an alert appears.
+                </p>
+            </div>
+
+            <a href="assignments.html" class="back-button">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Assignments
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>Designed & Developed by <strong>Shreyash Awati</strong></p>
+    <p>© 2026 All Rights Reserved.</p>
+</footer>
+
+<script>
+    // Multiplication Table
+    function printTable() {
+        const input = document.getElementById("numberInput");
+        const output = document.getElementById("tableOutput");
+
+        const value = input.value.trim();
+        const number = Number(value);
+
+        if (value === "" || !Number.isFinite(number)) {
+            output.style.backgroundColor = "red";
+            output.value = "";
+            alert("Please enter a valid number!");
+            return;
+        }
+
+        output.style.backgroundColor = "white";
+
+        let table = "";
+
+        for (let i = 1; i <= 10; i++) {
+            table += number + " x " + i + " = " +
+                     (number * i) + "\n";
+        }
+
+        output.value = table;
+    }
+
+    // Main Tabs
+    function showMainTab(tabId, button) {
+        document.querySelectorAll(".tab-panel").forEach(panel => {
+            panel.classList.remove("active");
+        });
+
+        document.querySelectorAll(".main-tab-buttons button").forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        document.getElementById(tabId).classList.add("active");
+        button.classList.add("active");
+    }
+
+    // Reference Code Tabs
+    function showCodeTab(tabId, button) {
+        document.querySelectorAll(".reference-panel").forEach(panel => {
+            panel.classList.remove("active");
+        });
+
+        document.querySelectorAll(".code-tab-buttons button").forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        document.getElementById(tabId).classList.add("active");
+        button.classList.add("active");
+    }
+
+    // Copy Code
+    function copyCode(elementId) {
+        const code = document.getElementById(elementId).textContent;
+
+        navigator.clipboard.writeText(code).then(() => {
+            alert("Code copied successfully!");
+        }).catch(() => {
+            alert("Unable to copy code. Please select and copy manually.");
+        });
+    }
+
+    // Download Code
+    function downloadCode(elementId, fileName) {
+        const code = document.getElementById(elementId).textContent;
+
+        const blob = new Blob([code], {
+            type: "text/plain"
+        });
+
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+
+        URL.revokeObjectURL(link.href);
+    }
+</script>
+
+</body>
+</html>
+    

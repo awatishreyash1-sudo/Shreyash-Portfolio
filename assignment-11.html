@@ -1,0 +1,1239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Output & Reference Code | Shreyash Awati</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        .project-tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .project-tab {
+            padding: 12px 22px;
+            border: 1px solid #dce0e8;
+            border-radius: 8px;
+            background: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+        }
+
+        .project-tab.active {
+            background: #eaf0ff;
+            color: #3158b5;
+            border-color: #5277d8;
+        }
+
+        .project-panel,
+        .code-panel {
+            display: none;
+        }
+
+        .project-panel.active,
+        .code-panel.active {
+            display: block;
+        }
+
+        .output-box {
+            padding: 25px;
+            background: #f5f6f8;
+            border: 1px solid #e3e6ed;
+            border-radius: 12px;
+        }
+
+        /* Event Demonstration */
+
+        .event-demo {
+            max-width: 750px;
+            margin: auto;
+            padding: 30px;
+            background: #fff;
+            border: 1px solid #e2e5eb;
+            border-radius: 12px;
+        }
+
+        .event-demo h2 {
+            text-align: center;
+            color: #3158b5;
+            margin-bottom: 8px;
+        }
+
+        .event-demo .intro {
+            text-align: center;
+            color: #687080;
+            margin-bottom: 25px;
+        }
+
+        .event-card {
+            padding: 20px;
+            margin-bottom: 18px;
+            background: #f8f9fb;
+            border: 1px solid #e2e5eb;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .event-card h3 {
+            color: #3158b5;
+            margin-bottom: 8px;
+        }
+
+        .event-card p {
+            color: #687080;
+            margin-bottom: 15px;
+        }
+
+        .event-btn {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 7px;
+            background: #3158b5;
+            color: white;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .event-btn:hover {
+            background: #24458f;
+        }
+
+        .event-hover-box {
+            padding: 30px 15px;
+            background: #eaf0ff;
+            border: 2px dashed #5277d8;
+            border-radius: 9px;
+            color: #3158b5;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .event-hover-box.active {
+            background: #3158b5;
+            color: #fff;
+            border-color: #3158b5;
+        }
+
+        .event-log {
+            margin-top: 22px;
+            padding: 18px;
+            background: #f3f6fc;
+            border: 1px solid #e2e5eb;
+            border-radius: 9px;
+        }
+
+        .event-log h3 {
+            color: #3158b5;
+            margin-bottom: 12px;
+        }
+
+        .event-log p {
+            margin: 7px 0;
+            color: #48556b;
+        }
+
+        .event-status {
+            display: block;
+            margin-top: 8px;
+            color: #207044;
+            font-weight: 600;
+        }
+
+        .reset-btn {
+            margin-top: 15px;
+            padding: 10px 18px;
+            border: 1px solid #dce0e8;
+            border-radius: 7px;
+            background: #fff;
+            color: #3158b5;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Source Code */
+
+        .code-wrapper {
+            border: 1px solid #e2e5eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            background: #fbfcfe;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: #f1f3f7;
+            border-bottom: 1px solid #e2e5eb;
+            flex-wrap: wrap;
+        }
+
+        .code-header h3 {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .code-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .code-actions button {
+            padding: 8px 12px;
+            border: 1px solid #dce0e8;
+            border-radius: 6px;
+            background: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-size: 13px;
+        }
+
+        .code-content {
+            overflow-x: auto;
+        }
+
+        .code-content pre {
+            margin: 0;
+            padding: 20px;
+            min-width: max-content;
+            color: #263247;
+            font: 13px/1.8 Consolas, monospace;
+            white-space: pre;
+        }
+
+        .file-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .file-tab {
+            padding: 10px 18px;
+            background: #fff;
+            border: 1px solid #dce0e8;
+            border-radius: 7px;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+        }
+
+        .file-tab.active {
+            background: #eaf0ff;
+            color: #3158b5;
+            border-color: #5277d8;
+        }
+
+        .info-note {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f3f6fc;
+            color: #48556b;
+        }
+
+        @media(max-width: 600px) {
+            .event-demo {
+                padding: 18px;
+            }
+
+            .output-box {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+            Shreyash<span>.</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="education.html">Education</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="certifications.html">Certificates</a>
+            <a href="assignments.html" class="active">Assignments</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <a href="resume/Shreyash-Resume.pdf" class="nav-resume" target="_blank">
+            Resume <i class="fa-solid fa-download"></i>
+        </a>
+
+    </div>
+</header>
+
+
+<!-- HERO -->
+
+<section class="page-hero">
+    <div class="container">
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> /
+            <a href="assignments.html">Assignments</a> /
+            <a href="assignment-1.html">Assignment 11</a> /
+            Output & Code
+        </div>
+
+        <span class="section-tag">ASSIGNMENT 11</span>
+
+        <h1>JavaScript Mouse Events</h1>
+
+        <p>
+            Demonstration of onclick, dblclick, mouseup and mouseover Events
+        </p>
+
+    </div>
+</section>
+
+
+<!-- PROJECT SECTION -->
+
+<section class="section">
+    <div class="container">
+
+        <div class="detail-card">
+
+            <h2>
+                <i class="fa-solid fa-computer-mouse"></i>
+                Project Demonstration
+            </h2>
+
+            <p>
+                Explore different JavaScript mouse events by interacting
+                with the demonstration elements below.
+            </p>
+
+
+            <!-- MAIN TABS -->
+
+            <div class="project-tabs">
+
+                <button class="project-tab active" data-panel="output">
+                    <i class="fa-solid fa-eye"></i> View Output
+                </button>
+
+                <button class="project-tab" data-panel="reference">
+                    <i class="fa-solid fa-code"></i> Reference Code
+                </button>
+
+            </div>
+
+
+            <!-- OUTPUT PANEL -->
+
+            <div class="project-panel active" id="output">
+
+                <div class="output-box">
+
+                    <div class="event-demo">
+
+                        <h2>Mouse Events Demonstration</h2>
+
+                        <p class="intro">
+                            Perform the actions described in each section.
+                        </p>
+
+
+                        <!-- ONCLICK -->
+
+                        <div class="event-card">
+
+                            <h3>
+                                <i class="fa-solid fa-hand-pointer"></i>
+                                1. onclick Event
+                            </h3>
+
+                            <p>
+                                Click the button to trigger the onclick event.
+                            </p>
+
+                            <button class="event-btn" id="clickButton">
+                                Click Me
+                            </button>
+
+                            <span class="event-status" id="clickStatus">
+                                Waiting for click...
+                            </span>
+
+                        </div>
+
+
+                        <!-- DBLCLICK -->
+
+                        <div class="event-card">
+
+                            <h3>
+                                <i class="fa-solid fa-computer-mouse"></i>
+                                2. dblclick Event
+                            </h3>
+
+                            <p>
+                                Double-click the button to trigger the event.
+                            </p>
+
+                            <button class="event-btn" id="doubleButton">
+                                Double Click Me
+                            </button>
+
+                            <span class="event-status" id="doubleStatus">
+                                Waiting for double click...
+                            </span>
+
+                        </div>
+
+
+                        <!-- MOUSEUP -->
+
+                        <div class="event-card">
+
+                            <h3>
+                                <i class="fa-solid fa-arrow-up"></i>
+                                3. mouseup Event
+                            </h3>
+
+                            <p>
+                                Press and release the mouse button on this box.
+                            </p>
+
+                            <button class="event-btn" id="mouseUpButton">
+                                Press and Release
+                            </button>
+
+                            <span class="event-status" id="mouseUpStatus">
+                                Waiting for mouse release...
+                            </span>
+
+                        </div>
+
+
+                        <!-- MOUSEOVER -->
+
+                        <div class="event-card">
+
+                            <h3>
+                                <i class="fa-solid fa-arrow-pointer"></i>
+                                4. mouseover Event
+                            </h3>
+
+                            <p>
+                                Move your mouse pointer over the box.
+                            </p>
+
+                            <div class="event-hover-box" id="hoverBox">
+                                Move Mouse Pointer Here
+                            </div>
+
+                            <span class="event-status" id="hoverStatus">
+                                Waiting for mouseover...
+                            </span>
+
+                        </div>
+
+
+                        <!-- EVENT LOG -->
+
+                        <div class="event-log">
+
+                            <h3>
+                                <i class="fa-solid fa-list-check"></i>
+                                Event Activity Log
+                            </h3>
+
+                            <p id="eventCount">
+                                Total Events: 0
+                            </p>
+
+                            <p id="lastEvent">
+                                Last Event: None
+                            </p>
+
+                            <button class="reset-btn" id="resetEvents">
+                                <i class="fa-solid fa-rotate-left"></i>
+                                Reset Events
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-note">
+
+                    <strong>How to test:</strong>
+
+                    Click the first button, double-click the second button,
+                    press and release the third button, and move your mouse
+                    over the fourth box. Observe the event messages and
+                    activity counter.
+
+                </div>
+
+            </div>
+
+
+            <!-- REFERENCE CODE PANEL -->
+
+            <div class="project-panel" id="reference">
+
+                <h2 style="margin-top:20px;">
+
+                    <i class="fa-solid fa-file-code"></i>
+                    Source Code Files
+
+                </h2>
+
+                <p>
+                    Select a file below to view, copy or download its
+                    complete source code.
+                </p>
+
+
+                <div class="file-tabs">
+
+                    <button class="file-tab active" data-file="html">
+                        HTML
+                    </button>
+
+                    <button class="file-tab" data-file="css">
+                        CSS
+                    </button>
+
+                    <button class="file-tab" data-file="js">
+                        JavaScript
+                    </button>
+
+                </div>
+
+
+                <!-- HTML SOURCE -->
+
+                <div class="code-panel active" id="html">
+
+                    <div class="code-wrapper">
+
+                        <div class="code-header">
+
+                            <h3>index.html</h3>
+
+                            <div class="code-actions">
+
+                                <button onclick="copyCode('htmlCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('htmlCode','index.html')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+
+<pre><code id="htmlCode">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;JavaScript Mouse Events&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;div class="container"&gt;
+
+        &lt;h1&gt;JavaScript Mouse Events&lt;/h1&gt;
+
+        &lt;div class="event-card"&gt;
+
+            &lt;h3&gt;1. onclick Event&lt;/h3&gt;
+
+            &lt;button id="clickButton"&gt;
+                Click Me
+            &lt;/button&gt;
+
+            &lt;p id="clickStatus"&gt;
+                Waiting for click...
+            &lt;/p&gt;
+
+        &lt;/div&gt;
+
+
+        &lt;div class="event-card"&gt;
+
+            &lt;h3&gt;2. dblclick Event&lt;/h3&gt;
+
+            &lt;button id="doubleButton"&gt;
+                Double Click Me
+            &lt;/button&gt;
+
+            &lt;p id="doubleStatus"&gt;
+                Waiting for double click...
+            &lt;/p&gt;
+
+        &lt;/div&gt;
+
+
+        &lt;div class="event-card"&gt;
+
+            &lt;h3&gt;3. mouseup Event&lt;/h3&gt;
+
+            &lt;button id="mouseUpButton"&gt;
+                Press and Release
+            &lt;/button&gt;
+
+            &lt;p id="mouseUpStatus"&gt;
+                Waiting for mouse release...
+            &lt;/p&gt;
+
+        &lt;/div&gt;
+
+
+        &lt;div class="event-card"&gt;
+
+            &lt;h3&gt;4. mouseover Event&lt;/h3&gt;
+
+            &lt;div id="hoverBox"&gt;
+                Move Mouse Here
+            &lt;/div&gt;
+
+            &lt;p id="hoverStatus"&gt;
+                Waiting for mouseover...
+            &lt;/p&gt;
+
+        &lt;/div&gt;
+
+
+        &lt;div class="event-log"&gt;
+
+            &lt;p id="eventCount"&gt;Total Events: 0&lt;/p&gt;
+
+            &lt;p id="lastEvent"&gt;Last Event: None&lt;/p&gt;
+
+            &lt;button id="resetEvents"&gt;Reset Events&lt;/button&gt;
+
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- CSS SOURCE -->
+
+                <div class="code-panel" id="css">
+
+                    <div class="code-wrapper">
+
+                        <div class="code-header">
+
+                            <h3>style.css</h3>
+
+                            <div class="code-actions">
+
+                                <button onclick="copyCode('cssCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('cssCode','style.css')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+
+<pre><code id="cssCode">* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6fa;
+    color: #333;
+    padding: 30px 15px;
+}
+
+.container {
+    max-width: 750px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+h1 {
+    text-align: center;
+    color: #3158b5;
+    margin-bottom: 25px;
+}
+
+.event-card {
+    padding: 20px;
+    margin-bottom: 18px;
+    background: #f8f9fb;
+    border: 1px solid #e2e5eb;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.event-card h3 {
+    color: #3158b5;
+    margin-bottom: 12px;
+}
+
+button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 7px;
+    background: #3158b5;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #24458f;
+}
+
+#hoverBox {
+    padding: 30px;
+    background: #eaf0ff;
+    border: 2px dashed #5277d8;
+    color: #3158b5;
+    cursor: pointer;
+}
+
+.event-status {
+    display: block;
+    margin-top: 10px;
+    color: #207044;
+    font-weight: bold;
+}
+
+.event-log {
+    margin-top: 20px;
+    padding: 18px;
+    background: #f3f6fc;
+    border-radius: 9px;
+}
+
+.event-log p {
+    margin: 8px 0;
+}
+
+@media(max-width: 600px) {
+    .container {
+        padding: 18px;
+    }
+
+    .event-card {
+        padding: 15px;
+    }
+}</code></pre>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- JAVASCRIPT SOURCE -->
+
+                <div class="code-panel" id="js">
+
+                    <div class="code-wrapper">
+
+                        <div class="code-header">
+
+                            <h3>script.js</h3>
+
+                            <div class="code-actions">
+
+                                <button onclick="copyCode('jsCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('jsCode','script.js')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+
+<pre><code id="jsCode">// Get HTML elements
+
+const clickButton =
+    document.getElementById("clickButton");
+
+const doubleButton =
+    document.getElementById("doubleButton");
+
+const mouseUpButton =
+    document.getElementById("mouseUpButton");
+
+const hoverBox =
+    document.getElementById("hoverBox");
+
+let eventCounter = 0;
+
+
+// Update event activity log
+
+function updateLog(eventName) {
+
+    eventCounter++;
+
+    document.getElementById("eventCount").textContent =
+        "Total Events: " + eventCounter;
+
+    document.getElementById("lastEvent").textContent =
+        "Last Event: " + eventName;
+
+}
+
+
+// 1. onclick event
+
+clickButton.addEventListener("click", function() {
+
+    document.getElementById("clickStatus").textContent =
+        "onclick event triggered successfully!";
+
+    updateLog("onclick");
+
+});
+
+
+// 2. dblclick event
+
+doubleButton.addEventListener("dblclick", function() {
+
+    document.getElementById("doubleStatus").textContent =
+        "dblclick event triggered successfully!";
+
+    updateLog("dblclick");
+
+});
+
+
+// 3. mouseup event
+
+mouseUpButton.addEventListener("mouseup", function() {
+
+    document.getElementById("mouseUpStatus").textContent =
+        "mouseup event triggered successfully!";
+
+    updateLog("mouseup");
+
+});
+
+
+// 4. mouseover event
+
+hoverBox.addEventListener("mouseover", function() {
+
+    hoverBox.classList.add("active");
+
+    hoverBox.textContent =
+        "Mouse is over this box!";
+
+    document.getElementById("hoverStatus").textContent =
+        "mouseover event triggered successfully!";
+
+    updateLog("mouseover");
+
+});
+
+
+// Mouse leaves hover box
+
+hoverBox.addEventListener("mouseout", function() {
+
+    hoverBox.classList.remove("active");
+
+    hoverBox.textContent =
+        "Move Mouse Pointer Here";
+
+});
+
+
+// Reset events
+
+document.getElementById("resetEvents")
+    .addEventListener("click", function() {
+
+        eventCounter = 0;
+
+        document.getElementById("eventCount").textContent =
+            "Total Events: 0";
+
+        document.getElementById("lastEvent").textContent =
+            "Last Event: None";
+
+        document.getElementById("clickStatus").textContent =
+            "Waiting for click...";
+
+        document.getElementById("doubleStatus").textContent =
+            "Waiting for double click...";
+
+        document.getElementById("mouseUpStatus").textContent =
+            "Waiting for mouse release...";
+
+        document.getElementById("hoverStatus").textContent =
+            "Waiting for mouseover...";
+
+        hoverBox.classList.remove("active");
+
+        hoverBox.textContent =
+            "Move Mouse Pointer Here";
+
+    });</code></pre>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-note">
+
+            <strong>Note:</strong>
+
+            This project demonstrates four JavaScript mouse events:
+            onclick, dblclick, mouseup and mouseover.
+            All events are handled directly in the browser using JavaScript.
+
+        </div>
+
+
+        <!-- BACK BUTTONS -->
+
+        <div class="center-button" style="margin-top:30px;">
+
+            <a href="assignment-1.html" class="btn btn-primary">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Assignment
+            </a>
+
+            <a href="assignments.html" class="btn btn-primary">
+                All Assignments
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+    <div class="container footer-content">
+
+        <a href="index.html" class="logo">
+            Shreyash<span>.</span>
+        </a>
+
+        <p>Designed & Developed by Shreyash Awati</p>
+
+        <small>© 2026 Shreyash Awati</small>
+
+    </div>
+</footer>
+
+
+<script src="js/main.js"></script>
+
+<script>
+
+// Main Output and Reference Code tabs
+
+const projectTabs =
+    document.querySelectorAll(".project-tab");
+
+const projectPanels =
+    document.querySelectorAll(".project-panel");
+
+projectTabs.forEach(function(tab) {
+
+    tab.addEventListener("click", function() {
+
+        projectTabs.forEach(item =>
+            item.classList.remove("active")
+        );
+
+        projectPanels.forEach(item =>
+            item.classList.remove("active")
+        );
+
+        this.classList.add("active");
+
+        document.getElementById(this.dataset.panel)
+            .classList.add("active");
+
+    });
+
+});
+
+
+// HTML, CSS and JavaScript file tabs
+
+const fileTabs =
+    document.querySelectorAll(".file-tab");
+
+const codePanels =
+    document.querySelectorAll(".code-panel");
+
+fileTabs.forEach(function(tab) {
+
+    tab.addEventListener("click", function() {
+
+        fileTabs.forEach(item =>
+            item.classList.remove("active")
+        );
+
+        codePanels.forEach(item =>
+            item.classList.remove("active")
+        );
+
+        this.classList.add("active");
+
+        document.getElementById(this.dataset.file)
+            .classList.add("active");
+
+    });
+
+});
+
+
+// Copy code
+
+function copyCode(elementId) {
+
+    const code =
+        document.getElementById(elementId).textContent;
+
+    navigator.clipboard.writeText(code)
+        .then(() => alert("Code copied successfully!"))
+        .catch(() => alert("Copy failed. Please copy manually."));
+
+}
+
+
+// Download code
+
+function downloadCode(elementId, fileName) {
+
+    const code =
+        document.getElementById(elementId).textContent;
+
+    const blob = new Blob([code], {
+        type: "text/plain"
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = fileName;
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+// Get HTML elements
+
+const clickButton =
+    document.getElementById("clickButton");
+
+const doubleButton =
+    document.getElementById("doubleButton");
+
+const mouseUpButton =
+    document.getElementById("mouseUpButton");
+
+const hoverBox =
+    document.getElementById("hoverBox");
+
+let eventCounter = 0;
+
+
+// Update event activity log
+
+function updateLog(eventName) {
+
+    eventCounter++;
+
+    document.getElementById("eventCount").textContent =
+        "Total Events: " + eventCounter;
+
+    document.getElementById("lastEvent").textContent =
+        "Last Event: " + eventName;
+
+}
+
+
+// onclick event
+
+clickButton.addEventListener("click", function() {
+
+    document.getElementById("clickStatus").textContent =
+        "onclick event triggered successfully!";
+
+    updateLog("onclick");
+
+});
+
+
+// dblclick event
+
+doubleButton.addEventListener("dblclick", function() {
+
+    document.getElementById("doubleStatus").textContent =
+        "dblclick event triggered successfully!";
+
+    updateLog("dblclick");
+
+});
+
+
+// mouseup event
+
+mouseUpButton.addEventListener("mouseup", function() {
+
+    document.getElementById("mouseUpStatus").textContent =
+        "mouseup event triggered successfully!";
+
+    updateLog("mouseup");
+
+});
+
+
+// mouseover event
+
+hoverBox.addEventListener("mouseover", function() {
+
+    hoverBox.classList.add("active");
+
+    hoverBox.textContent =
+        "Mouse is over this box!";
+
+    document.getElementById("hoverStatus").textContent =
+        "mouseover event triggered successfully!";
+
+    updateLog("mouseover");
+
+});
+
+
+// Mouse leaves hover box
+
+hoverBox.addEventListener("mouseout", function() {
+
+    hoverBox.classList.remove("active");
+
+    hoverBox.textContent =
+        "Move Mouse Pointer Here";
+
+});
+
+
+// Reset events
+
+document.getElementById("resetEvents")
+    .addEventListener("click", function() {
+
+        eventCounter = 0;
+
+        document.getElementById("eventCount").textContent =
+            "Total Events: 0";
+
+        document.getElementById("lastEvent").textContent =
+            "Last Event: None";
+
+        document.getElementById("clickStatus").textContent =
+            "Waiting for click...";
+
+        document.getElementById("doubleStatus").textContent =
+            "Waiting for double click...";
+
+        document.getElementById("mouseUpStatus").textContent =
+            "Waiting for mouse release...";
+
+        document.getElementById("hoverStatus").textContent =
+            "Waiting for mouseover...";
+
+        hoverBox.classList.remove("active");
+
+        hoverBox.textContent =
+            "Move Mouse Pointer Here";
+
+    });
+
+</script>
+
+</body>
+</html>

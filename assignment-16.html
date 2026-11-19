@@ -1,0 +1,620 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Output & Reference Code | Shreyash Awati</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        .project-tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .project-tab, .file-tab {
+            padding: 12px 22px;
+            border: 1px solid #dce0e8;
+            border-radius: 8px;
+            background: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+        }
+
+        .project-tab.active, .file-tab.active {
+            background: #eaf0ff;
+            color: #3158b5;
+            border-color: #5277d8;
+        }
+
+        .project-panel, .code-panel {
+            display: none;
+        }
+
+        .project-panel.active, .code-panel.active {
+            display: block;
+        }
+
+        .output-box {
+            padding: 25px;
+            background: #f5f6f8;
+            border: 1px solid #e3e6ed;
+            border-radius: 12px;
+        }
+
+        .demo-card {
+            max-width: 600px;
+            margin: auto;
+            padding: 35px 25px;
+            background: #fff;
+            border: 1px solid #e2e5eb;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .demo-card h2 {
+            color: #3158b5;
+            margin-bottom: 12px;
+        }
+
+        .demo-card p {
+            color: #687080;
+            margin-bottom: 25px;
+        }
+
+        .demo-icon {
+            font-size: 55px;
+            color: #3158b5;
+            margin-bottom: 20px;
+        }
+
+        .demo-btn {
+            padding: 13px 25px;
+            background: #3158b5;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .demo-btn:hover {
+            background: #24458f;
+        }
+
+        .file-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .code-wrapper {
+            border: 1px solid #e2e5eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            background: #fbfcfe;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: #f1f3f7;
+            border-bottom: 1px solid #e2e5eb;
+            flex-wrap: wrap;
+        }
+
+        .code-header h3 {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .code-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .code-actions button {
+            padding: 8px 12px;
+            border: 1px solid #dce0e8;
+            border-radius: 6px;
+            background: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-size: 13px;
+        }
+
+        .code-content {
+            overflow-x: auto;
+        }
+
+        .code-content pre {
+            margin: 0;
+            padding: 20px;
+            min-width: max-content;
+            color: #263247;
+            font: 13px/1.8 Consolas, monospace;
+            white-space: pre;
+        }
+
+        .info-note {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f3f6fc;
+            color: #48556b;
+        }
+
+        @media(max-width:600px) {
+            .output-box {
+                padding: 12px;
+            }
+
+            .demo-card {
+                padding: 22px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+            Shreyash<span>.</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="education.html">Education</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="certifications.html">Certificates</a>
+            <a href="assignments.html" class="active">Assignments</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <a href="resume/Shreyash-Resume.pdf" class="nav-resume" target="_blank">
+            Resume <i class="fa-solid fa-download"></i>
+        </a>
+
+    </div>
+</header>
+
+
+<!-- HERO -->
+<section class="page-hero">
+    <div class="container">
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> /
+            <a href="assignments.html">Assignments</a> /
+            Assignment 16 / Output & Code
+        </div>
+
+        <span class="section-tag">ASSIGNMENT 16</span>
+
+        <h1>Fibonacci Series</h1>
+
+        <p>
+            Display First 10 Fibonacci Terms Using Two HTML Pages
+        </p>
+
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="container">
+
+        <div class="detail-card">
+
+            <h2>
+                <i class="fa-solid fa-laptop-code"></i>
+                Project Demonstration
+            </h2>
+
+            <p>
+                Click the Show button to generate the first 10 terms
+                of the Fibonacci series on the second page.
+            </p>
+
+
+            <!-- MAIN TABS -->
+            <div class="project-tabs">
+
+                <button class="project-tab active" data-panel="output">
+                    <i class="fa-solid fa-eye"></i> View Output
+                </button>
+
+                <button class="project-tab" data-panel="reference">
+                    <i class="fa-solid fa-code"></i> Reference Code
+                </button>
+
+            </div>
+
+
+            <!-- OUTPUT PANEL -->
+            <div class="project-panel active" id="output">
+
+                <div class="output-box">
+
+                    <div class="demo-card">
+
+                        <div class="demo-icon">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+
+                        <h2>Fibonacci Series Generator</h2>
+
+                        <p>
+                            Click below to display the first
+                            10 terms of the Fibonacci series.
+                        </p>
+
+                        <button class="demo-btn" onclick="showFibonacci()">
+                            <i class="fa-solid fa-eye"></i>
+                            Show Fibonacci Series
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="info-note">
+                    <strong>How to test:</strong>
+                    <ul>
+                        <li>Click the Show Fibonacci Series button.</li>
+                        <li>The second HTML page will open.</li>
+                        <li>The first 10 Fibonacci terms will appear in a text box.</li>
+                        <li>Click Back to return to the first page.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+            <!-- REFERENCE CODE PANEL -->
+            <div class="project-panel" id="reference">
+
+                <h2 style="margin-top:20px;">
+                    <i class="fa-solid fa-file-code"></i>
+                    Source Code Files
+                </h2>
+
+                <p>
+                    Select a file below to view, copy or download
+                    its complete source code.
+                </p>
+
+                <div class="file-tabs">
+
+                    <button class="file-tab active" data-file="html">
+                        First Page
+                    </button>
+
+                    <button class="file-tab" data-file="result">
+                        Second Page
+                    </button>
+
+                    <button class="file-tab" data-file="js">
+                        JavaScript
+                    </button>
+
+                </div>
+
+
+                <!-- FIRST PAGE CODE -->
+                <div class="code-panel active" id="html">
+
+                    <div class="code-wrapper">
+
+                        <div class="code-header">
+                            <h3>assignment-16.html</h3>
+
+                            <div class="code-actions">
+                                <button onclick="copyCode('htmlCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('htmlCode','assignment-16.html')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+<pre><code id="htmlCode">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Fibonacci Series&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;h1&gt;Fibonacci Series Generator&lt;/h1&gt;
+
+    &lt;p&gt;Click the button to display first 10 terms.&lt;/p&gt;
+
+    &lt;button onclick="showFibonacci()"&gt;Show&lt;/button&gt;
+
+    &lt;script&gt;
+        function showFibonacci() {
+            window.location.href = "fibonacci-result.html";
+        }
+    &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- SECOND PAGE CODE -->
+                <div class="code-panel" id="result">
+
+                    <div class="code-wrapper">
+
+                        <div class="code-header">
+                            <h3>fibonacci-result.html</h3>
+
+                            <div class="code-actions">
+                                <button onclick="copyCode('resultCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('resultCode','fibonacci-result.html')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+<pre><code id="resultCode">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Fibonacci Result&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;h1&gt;First 10 Fibonacci Terms&lt;/h1&gt;
+
+    &lt;textarea id="result" rows="5" cols="40" readonly&gt;&lt;/textarea&gt;
+
+    &lt;br&gt;&lt;br&gt;
+
+    &lt;button onclick="history.back()"&gt;Back&lt;/button&gt;
+
+    &lt;script&gt;
+        let a = 0;
+        let b = 1;
+        let series = [];
+
+        for (let i = 1; i &lt;= 10; i++) {
+            series.push(a);
+
+            let next = a + b;
+            a = b;
+            b = next;
+        }
+
+        document.getElementById("result").value =
+            series.join(", ");
+    &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- JAVASCRIPT CODE -->
+                <div class="code-panel" id="js">
+
+                    <div class="code-wrapper">
+
+                        <div class="code-header">
+                            <h3>JavaScript Logic</h3>
+
+                            <div class="code-actions">
+                                <button onclick="copyCode('jsCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('jsCode','fibonacci.js')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+<pre><code id="jsCode">let a = 0;
+let b = 1;
+let series = [];
+
+// Generate first 10 Fibonacci terms
+for (let i = 1; i &lt;= 10; i++) {
+
+    series.push(a);
+
+    let next = a + b;
+
+    a = b;
+    b = next;
+
+}
+
+// Display series in textarea
+document.getElementById("result").value =
+    series.join(", ");</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-note">
+            <strong>Note:</strong>
+            This program uses two separate HTML pages.
+            JavaScript generates the Fibonacci series and displays
+            the first 10 terms in a read-only text area.
+        </div>
+
+
+        <div class="center-button" style="margin-top:30px;">
+
+            <a href="assignments.html" class="btn btn-primary">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Assignments
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+    <div class="container footer-content">
+
+        <a href="index.html" class="logo">
+            Shreyash<span>.</span>
+        </a>
+
+        <p>Designed & Developed by Shreyash Awati</p>
+
+        <small>© 2026 Shreyash Awati</small>
+
+    </div>
+
+</footer>
+
+
+<script src="js/main.js"></script>
+
+<script>
+
+// SHOW FIBONACCI RESULT PAGE
+function showFibonacci() {
+    window.location.href = "fibonacci-result.html";
+}
+
+
+// MAIN TABS
+const projectTabs = document.querySelectorAll(".project-tab");
+const projectPanels = document.querySelectorAll(".project-panel");
+
+projectTabs.forEach(function(tab) {
+
+    tab.addEventListener("click", function() {
+
+        projectTabs.forEach(item => item.classList.remove("active"));
+        projectPanels.forEach(item => item.classList.remove("active"));
+
+        this.classList.add("active");
+
+        document.getElementById(this.dataset.panel)
+            .classList.add("active");
+
+    });
+
+});
+
+
+// FILE TABS
+const fileTabs = document.querySelectorAll(".file-tab");
+const codePanels = document.querySelectorAll(".code-panel");
+
+fileTabs.forEach(function(tab) {
+
+    tab.addEventListener("click", function() {
+
+        fileTabs.forEach(item => item.classList.remove("active"));
+        codePanels.forEach(item => item.classList.remove("active"));
+
+        this.classList.add("active");
+
+        document.getElementById(this.dataset.file)
+            .classList.add("active");
+
+    });
+
+});
+
+
+// COPY CODE
+function copyCode(elementId) {
+
+    const code = document.getElementById(elementId).textContent;
+
+    navigator.clipboard.writeText(code)
+        .then(() => alert("Code copied successfully!"))
+        .catch(() => alert("Copy failed. Please copy manually."));
+
+}
+
+
+// DOWNLOAD CODE
+function downloadCode(elementId, fileName) {
+
+    const code = document.getElementById(elementId).textContent;
+
+    const blob = new Blob([code], {
+        type: "text/html"
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = fileName;
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+}
+
+</script>
+
+</body>
+</html>

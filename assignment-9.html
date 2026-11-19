@@ -1,0 +1,1450 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Output & Reference Code | Shreyash Awati</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        .project-tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .project-tab {
+            padding: 12px 22px;
+            border: 1px solid #dce0e8;
+            border-radius: 8px;
+            background: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+        }
+
+        .project-tab.active {
+            background: #eaf0ff;
+            color: #3158b5;
+            border-color: #5277d8;
+        }
+
+        .project-panel {
+            display: none;
+        }
+
+        .project-panel.active {
+            display: block;
+        }
+
+        .output-box {
+            padding: 25px;
+            background: #f5f6f8;
+            border: 1px solid #e3e6ed;
+            border-radius: 12px;
+        }
+
+        /* Calculator */
+
+        .calculator {
+            max-width: 370px;
+            margin: auto;
+            padding: 25px;
+            background: #ffffff;
+            border: 1px solid #e2e5eb;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+        }
+
+        .calculator h2 {
+            text-align: center;
+            color: #3158b5;
+            margin-bottom: 8px;
+        }
+
+        .calculator .intro {
+            text-align: center;
+            color: #687080;
+            margin-bottom: 22px;
+        }
+
+        .calculator-display {
+            width: 100%;
+            min-height: 85px;
+            padding: 18px;
+            margin-bottom: 18px;
+            background: #f1f3f7;
+            border: 1px solid #e0e4eb;
+            border-radius: 9px;
+            text-align: right;
+            overflow: hidden;
+        }
+
+        .previous-value {
+            display: block;
+            min-height: 22px;
+            color: #778092;
+            font-size: 14px;
+            overflow-wrap: anywhere;
+        }
+
+        .current-value {
+            display: block;
+            color: #263247;
+            font-size: 30px;
+            font-weight: 700;
+            overflow-wrap: anywhere;
+        }
+
+        .calculator-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .calc-btn {
+            min-height: 58px;
+            border: 1px solid #e0e4eb;
+            border-radius: 9px;
+            background: #f7f8fa;
+            color: #263247;
+            font-size: 19px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .calc-btn:hover {
+            background: #eaf0ff;
+            border-color: #5277d8;
+        }
+
+        .calc-btn.operator {
+            background: #eaf0ff;
+            color: #3158b5;
+        }
+
+        .calc-btn.clear {
+            background: #fff0f0;
+            color: #d04444;
+        }
+
+        .calc-btn.equal {
+            background: #3158b5;
+            color: #fff;
+            border-color: #3158b5;
+        }
+
+        .calc-btn.equal:hover {
+            background: #24458f;
+        }
+
+        .calc-btn.zero {
+            grid-column: span 2;
+        }
+
+        /* Source Code */
+
+        .code-wrapper {
+            border: 1px solid #e2e5eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            background: #fbfcfe;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: #f1f3f7;
+            border-bottom: 1px solid #e2e5eb;
+            flex-wrap: wrap;
+        }
+
+        .code-header h3 {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .code-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .code-actions button {
+            padding: 8px 12px;
+            border: 1px solid #dce0e8;
+            border-radius: 6px;
+            background: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-size: 13px;
+        }
+
+        .code-content {
+            overflow-x: auto;
+        }
+
+        .code-content pre {
+            margin: 0;
+            padding: 20px;
+            min-width: max-content;
+            color: #263247;
+            font: 13px/1.8 Consolas, monospace;
+            white-space: pre;
+        }
+
+        .file-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .file-tab {
+            padding: 10px 18px;
+            background: #fff;
+            border: 1px solid #dce0e8;
+            border-radius: 7px;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+        }
+
+        .file-tab.active {
+            background: #eaf0ff;
+            color: #3158b5;
+            border-color: #5277d8;
+        }
+
+        .code-panel {
+            display: none;
+        }
+
+        .code-panel.active {
+            display: block;
+        }
+
+        .info-note {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f3f6fc;
+            color: #48556b;
+        }
+
+        @media(max-width: 600px) {
+            .calculator {
+                padding: 18px;
+            }
+
+            .output-box {
+                padding: 12px;
+            }
+
+            .calc-btn {
+                min-height: 52px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+            Shreyash<span>.</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="education.html">Education</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="certifications.html">Certificates</a>
+            <a href="assignments.html" class="active">Assignments</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <a href="resume/Shreyash-Resume.pdf" class="nav-resume" target="_blank">
+            Resume <i class="fa-solid fa-download"></i>
+        </a>
+
+    </div>
+</header>
+
+
+<!-- HERO -->
+
+<section class="page-hero">
+    <div class="container">
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> /
+            <a href="assignments.html">Assignments</a> /
+            <a href="assignment-1.html">Assignment 09</a> /
+            Output & Code
+        </div>
+
+        <span class="section-tag">ASSIGNMENT 09</span>
+
+        <h1>JavaScript Calculator</h1>
+
+        <p>
+            Project Output and Complete Reference Source Code
+        </p>
+
+    </div>
+</section>
+
+
+<!-- PROJECT SECTION -->
+
+<section class="section">
+    <div class="container">
+
+        <div class="detail-card">
+
+            <h2>
+                <i class="fa-solid fa-calculator"></i>
+                Project Demonstration
+            </h2>
+
+            <p>
+                Use the working calculator to perform basic arithmetic
+                operations and explore its HTML, CSS and JavaScript code.
+            </p>
+
+
+            <!-- MAIN TABS -->
+
+            <div class="project-tabs">
+
+                <button class="project-tab active" data-panel="output">
+                    <i class="fa-solid fa-eye"></i> View Output
+                </button>
+
+                <button class="project-tab" data-panel="reference">
+                    <i class="fa-solid fa-code"></i> Reference Code
+                </button>
+
+            </div>
+
+
+            <!-- OUTPUT PANEL -->
+
+            <div class="project-panel active" id="output">
+
+                <div class="output-box">
+
+                    <div class="calculator">
+
+                        <h2>JavaScript Calculator</h2>
+
+                        <p class="intro">
+                            Perform Basic Arithmetic Operations
+                        </p>
+
+                        <div class="calculator-display">
+
+                            <span class="previous-value" id="previousValue"></span>
+
+                            <span class="current-value" id="currentValue" aria-live="polite">0</span>
+
+                        </div>
+
+
+                        <div class="calculator-buttons">
+
+                            <button class="calc-btn clear" data-action="clear">
+                                AC
+                            </button>
+
+                            <button class="calc-btn operator" data-action="delete">
+                                DEL
+                            </button>
+
+                            <button class="calc-btn operator" data-operator="/">
+                                ÷
+                            </button>
+
+                            <button class="calc-btn operator" data-operator="*">
+                                ×
+                            </button>
+
+
+                            <button class="calc-btn" data-number="7">7</button>
+                            <button class="calc-btn" data-number="8">8</button>
+                            <button class="calc-btn" data-number="9">9</button>
+
+                            <button class="calc-btn operator" data-operator="-">
+                                −
+                            </button>
+
+
+                            <button class="calc-btn" data-number="4">4</button>
+                            <button class="calc-btn" data-number="5">5</button>
+                            <button class="calc-btn" data-number="6">6</button>
+
+                            <button class="calc-btn operator" data-operator="+">
+                                +
+                            </button>
+
+
+                            <button class="calc-btn" data-number="1">1</button>
+                            <button class="calc-btn" data-number="2">2</button>
+                            <button class="calc-btn" data-number="3">3</button>
+
+                            <button class="calc-btn equal" data-action="calculate">
+                                =
+                            </button>
+
+
+                            <button class="calc-btn zero" data-number="0">
+                                0
+                            </button>
+
+                            <button class="calc-btn" data-action="decimal">
+                                .
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-note">
+                    <strong>How to test:</strong>
+                    Enter two numbers, select an arithmetic operator
+                    (+, −, ×, ÷), enter the second number and click
+                    the equals (=) button to see the result.
+                    You can also use your keyboard.
+                </div>
+
+            </div>
+
+
+            <!-- REFERENCE CODE PANEL -->
+
+            <div class="project-panel" id="reference">
+
+                <h2 style="margin-top:20px;">
+                    <i class="fa-solid fa-file-code"></i>
+                    Source Code Files
+                </h2>
+
+                <p>
+                    Select a file below to view, copy or download its
+                    complete source code.
+                </p>
+
+
+                <div class="file-tabs">
+
+                    <button class="file-tab active" data-file="html">
+                        HTML
+                    </button>
+
+                    <button class="file-tab" data-file="css">
+                        CSS
+                    </button>
+
+                    <button class="file-tab" data-file="js">
+                        JavaScript
+                    </button>
+
+                </div>
+
+
+                <!-- HTML SOURCE -->
+
+                <div class="code-panel active" id="html">
+
+                    <div class="code-wrapper">
+
+                        <div class="code-header">
+
+                            <h3>index.html</h3>
+
+                            <div class="code-actions">
+
+                                <button onclick="copyCode('htmlCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('htmlCode','index.html')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+
+<pre><code id="htmlCode">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;JavaScript Calculator&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;div class="calculator"&gt;
+
+        &lt;h2&gt;JavaScript Calculator&lt;/h2&gt;
+
+        &lt;div class="calculator-display"&gt;
+            &lt;span id="previousValue"&gt;&lt;/span&gt;
+            &lt;span id="currentValue"&gt;0&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class="calculator-buttons"&gt;
+
+            &lt;button data-action="clear"&gt;AC&lt;/button&gt;
+            &lt;button data-action="delete"&gt;DEL&lt;/button&gt;
+            &lt;button data-operator="/"&gt;÷&lt;/button&gt;
+            &lt;button data-operator="*"&gt;×&lt;/button&gt;
+
+            &lt;button data-number="7"&gt;7&lt;/button&gt;
+            &lt;button data-number="8"&gt;8&lt;/button&gt;
+            &lt;button data-number="9"&gt;9&lt;/button&gt;
+            &lt;button data-operator="-"&gt;-&lt;/button&gt;
+
+            &lt;button data-number="4"&gt;4&lt;/button&gt;
+            &lt;button data-number="5"&gt;5&lt;/button&gt;
+            &lt;button data-number="6"&gt;6&lt;/button&gt;
+            &lt;button data-operator="+"&gt;+&lt;/button&gt;
+
+            &lt;button data-number="1"&gt;1&lt;/button&gt;
+            &lt;button data-number="2"&gt;2&lt;/button&gt;
+            &lt;button data-number="3"&gt;3&lt;/button&gt;
+            &lt;button data-action="calculate"&gt;=&lt;/button&gt;
+
+            &lt;button data-number="0"&gt;0&lt;/button&gt;
+            &lt;button data-action="decimal"&gt;.&lt;/button&gt;
+
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- CSS SOURCE -->
+
+                <div class="code-panel" id="css">
+
+                    <div class="code-wrapper">
+
+                        <div class="code-header">
+
+                            <h3>style.css</h3>
+
+                            <div class="code-actions">
+
+                                <button onclick="copyCode('cssCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('cssCode','style.css')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+
+<pre><code id="cssCode">* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6fa;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.calculator {
+    width: 100%;
+    max-width: 370px;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+h2 {
+    text-align: center;
+    color: #3158b5;
+    margin-bottom: 20px;
+}
+
+.calculator-display {
+    min-height: 85px;
+    padding: 18px;
+    margin-bottom: 18px;
+    background: #f1f3f7;
+    border-radius: 9px;
+    text-align: right;
+    overflow: hidden;
+}
+
+#previousValue {
+    display: block;
+    color: #778092;
+    font-size: 14px;
+    min-height: 22px;
+}
+
+#currentValue {
+    display: block;
+    color: #263247;
+    font-size: 30px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+}
+
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    min-height: 58px;
+    border: 1px solid #e0e4eb;
+    border-radius: 9px;
+    background: #f7f8fa;
+    color: #263247;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #eaf0ff;
+}
+
+button[data-operator] {
+    background: #eaf0ff;
+    color: #3158b5;
+}
+
+button[data-action="clear"] {
+    background: #fff0f0;
+    color: #d04444;
+}
+
+button[data-action="calculate"] {
+    background: #3158b5;
+    color: white;
+}
+
+button[data-action="calculate"]:hover {
+    background: #24458f;
+}
+
+button[data-number="0"] {
+    grid-column: span 2;
+}
+
+@media(max-width: 400px) {
+    .calculator {
+        padding: 18px;
+    }
+
+    button {
+        min-height: 50px;
+    }
+}</code></pre>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- JAVASCRIPT SOURCE -->
+
+                <div class="code-panel" id="js">
+
+                    <div class="code-wrapper">
+
+                        <div class="code-header">
+
+                            <h3>script.js</h3>
+
+                            <div class="code-actions">
+
+                                <button onclick="copyCode('jsCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('jsCode','script.js')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+
+<pre><code id="jsCode">const currentValue =
+    document.getElementById("currentValue");
+
+const previousValue =
+    document.getElementById("previousValue");
+
+const buttons =
+    document.querySelectorAll(".calculator-buttons button");
+
+let currentInput = "0";
+let previousInput = "";
+let operator = null;
+let shouldReset = false;
+
+
+// Display values
+
+function updateDisplay() {
+
+    currentValue.textContent = currentInput;
+
+    previousValue.textContent =
+        previousInput && operator
+        ? previousInput + " " + operator
+        : "";
+}
+
+
+// Add number
+
+function appendNumber(number) {
+
+    if (currentInput === "Error") {
+        clearCalculator();
+    }
+
+    if (shouldReset) {
+        currentInput = number;
+        shouldReset = false;
+    }
+
+    else if (currentInput === "0") {
+        currentInput = number;
+    }
+
+    else if (currentInput.length < 15) {
+        currentInput += number;
+    }
+
+    updateDisplay();
+}
+
+
+// Add decimal
+
+function appendDecimal() {
+
+    if (shouldReset) {
+        currentInput = "0";
+        shouldReset = false;
+    }
+
+    if (!currentInput.includes(".")) {
+        currentInput += ".";
+    }
+
+    updateDisplay();
+}
+
+
+// Select operator
+
+function chooseOperator(selectedOperator) {
+
+    if (currentInput === "Error") return;
+
+    if (operator && !shouldReset) {
+        calculate();
+    }
+
+    previousInput = currentInput;
+    operator = selectedOperator;
+    shouldReset = true;
+
+    updateDisplay();
+}
+
+
+// Perform calculation
+
+function calculate() {
+
+    if (!operator || shouldReset) return;
+
+    const firstNumber = parseFloat(previousInput);
+    const secondNumber = parseFloat(currentInput);
+
+    let result;
+
+    switch (operator) {
+
+        case "+":
+            result = firstNumber + secondNumber;
+            break;
+
+        case "-":
+            result = firstNumber - secondNumber;
+            break;
+
+        case "*":
+            result = firstNumber * secondNumber;
+            break;
+
+        case "/":
+
+            if (secondNumber === 0) {
+                currentInput = "Error";
+                previousInput = "";
+                operator = null;
+                shouldReset = true;
+                updateDisplay();
+                return;
+            }
+
+            result = firstNumber / secondNumber;
+            break;
+
+        default:
+            return;
+    }
+
+    if (!Number.isFinite(result)) {
+        currentInput = "Error";
+    }
+
+    else {
+        result = parseFloat(result.toPrecision(12));
+        currentInput = String(result);
+    }
+
+    previousInput = "";
+    operator = null;
+    shouldReset = true;
+
+    updateDisplay();
+}
+
+
+// Clear calculator
+
+function clearCalculator() {
+
+    currentInput = "0";
+    previousInput = "";
+    operator = null;
+    shouldReset = false;
+
+    updateDisplay();
+}
+
+
+// Delete last digit
+
+function deleteNumber() {
+
+    if (currentInput === "Error" || shouldReset) {
+        clearCalculator();
+        return;
+    }
+
+    currentInput = currentInput.length > 1
+        ? currentInput.slice(0, -1)
+        : "0";
+
+    updateDisplay();
+}
+
+
+// Button click events
+
+buttons.forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        const number = this.dataset.number;
+        const selectedOperator = this.dataset.operator;
+        const action = this.dataset.action;
+
+        if (number !== undefined) {
+            appendNumber(number);
+        }
+
+        else if (selectedOperator) {
+            chooseOperator(selectedOperator);
+        }
+
+        else if (action === "decimal") {
+            appendDecimal();
+        }
+
+        else if (action === "calculate") {
+            calculate();
+        }
+
+        else if (action === "clear") {
+            clearCalculator();
+        }
+
+        else if (action === "delete") {
+            deleteNumber();
+        }
+
+    });
+
+});
+
+
+// Keyboard support
+
+document.addEventListener("keydown", function(event) {
+
+    if (/^[0-9]$/.test(event.key)) {
+        appendNumber(event.key);
+    }
+
+    else if (["+", "-", "*", "/"].includes(event.key)) {
+        chooseOperator(event.key);
+    }
+
+    else if (event.key === ".") {
+        appendDecimal();
+    }
+
+    else if (event.key === "Enter" || event.key === "=") {
+        event.preventDefault();
+        calculate();
+    }
+
+    else if (event.key === "Backspace") {
+        deleteNumber();
+    }
+
+    else if (event.key === "Escape") {
+        clearCalculator();
+    }
+
+});
+
+
+// Initial display
+
+updateDisplay();</code></pre>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-note">
+            <strong>Note:</strong>
+            This calculator is developed using HTML, CSS and JavaScript.
+            It performs calculations directly in the browser.
+            No database or server is required.
+        </div>
+
+
+        <!-- BACK BUTTONS -->
+
+        <div class="center-button" style="margin-top:30px;">
+
+            <a href="assignment-1.html" class="btn btn-primary">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Assignment
+            </a>
+
+            <a href="assignments.html" class="btn btn-primary">
+                All Assignments
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+    <div class="container footer-content">
+
+        <a href="index.html" class="logo">
+            Shreyash<span>.</span>
+        </a>
+
+        <p>Designed & Developed by Shreyash Awati</p>
+
+        <small>© 2026 Shreyash Awati</small>
+
+    </div>
+</footer>
+
+
+<script src="js/main.js"></script>
+
+<script>
+
+// Main Output and Reference Code tabs
+
+const projectTabs =
+    document.querySelectorAll(".project-tab");
+
+const projectPanels =
+    document.querySelectorAll(".project-panel");
+
+projectTabs.forEach(function(tab) {
+
+    tab.addEventListener("click", function() {
+
+        projectTabs.forEach(item =>
+            item.classList.remove("active")
+        );
+
+        projectPanels.forEach(item =>
+            item.classList.remove("active")
+        );
+
+        this.classList.add("active");
+
+        document.getElementById(this.dataset.panel)
+            .classList.add("active");
+
+    });
+
+});
+
+
+// HTML, CSS and JavaScript file tabs
+
+const fileTabs =
+    document.querySelectorAll(".file-tab");
+
+const codePanels =
+    document.querySelectorAll(".code-panel");
+
+fileTabs.forEach(function(tab) {
+
+    tab.addEventListener("click", function() {
+
+        fileTabs.forEach(item =>
+            item.classList.remove("active")
+        );
+
+        codePanels.forEach(item =>
+            item.classList.remove("active")
+        );
+
+        this.classList.add("active");
+
+        document.getElementById(this.dataset.file)
+            .classList.add("active");
+
+    });
+
+});
+
+
+// Copy code
+
+function copyCode(elementId) {
+
+    const code =
+        document.getElementById(elementId).textContent;
+
+    navigator.clipboard.writeText(code)
+        .then(() => alert("Code copied successfully!"))
+        .catch(() => alert("Copy failed. Please copy manually."));
+
+}
+
+
+// Download code
+
+function downloadCode(elementId, fileName) {
+
+    const code =
+        document.getElementById(elementId).textContent;
+
+    const blob = new Blob([code], {
+        type: "text/plain"
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = fileName;
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+// Calculator functionality
+
+const currentValue =
+    document.getElementById("currentValue");
+
+const previousValue =
+    document.getElementById("previousValue");
+
+const buttons =
+    document.querySelectorAll(".calculator-buttons button");
+
+let currentInput = "0";
+let previousInput = "";
+let operator = null;
+let shouldReset = false;
+
+
+function updateDisplay() {
+
+    currentValue.textContent = currentInput;
+
+    previousValue.textContent =
+        previousInput && operator
+        ? previousInput + " " + operator
+        : "";
+
+}
+
+
+function appendNumber(number) {
+
+    if (currentInput === "Error") {
+        clearCalculator();
+    }
+
+    if (shouldReset) {
+
+        currentInput = number;
+        shouldReset = false;
+
+    }
+
+    else if (currentInput === "0") {
+
+        currentInput = number;
+
+    }
+
+    else if (currentInput.length < 15) {
+
+        currentInput += number;
+
+    }
+
+    updateDisplay();
+
+}
+
+
+function appendDecimal() {
+
+    if (shouldReset) {
+
+        currentInput = "0";
+        shouldReset = false;
+
+    }
+
+    if (!currentInput.includes(".")) {
+
+        currentInput += ".";
+
+    }
+
+    updateDisplay();
+
+}
+
+
+function chooseOperator(selectedOperator) {
+
+    if (currentInput === "Error") return;
+
+    if (operator && !shouldReset) {
+
+        calculate();
+
+    }
+
+    previousInput = currentInput;
+
+    operator = selectedOperator;
+
+    shouldReset = true;
+
+    updateDisplay();
+
+}
+
+
+function calculate() {
+
+    if (!operator || shouldReset) return;
+
+    const firstNumber = parseFloat(previousInput);
+
+    const secondNumber = parseFloat(currentInput);
+
+    let result;
+
+    switch (operator) {
+
+        case "+":
+            result = firstNumber + secondNumber;
+            break;
+
+        case "-":
+            result = firstNumber - secondNumber;
+            break;
+
+        case "*":
+            result = firstNumber * secondNumber;
+            break;
+
+        case "/":
+
+            if (secondNumber === 0) {
+
+                currentInput = "Error";
+                previousInput = "";
+                operator = null;
+                shouldReset = true;
+
+                updateDisplay();
+
+                return;
+
+            }
+
+            result = firstNumber / secondNumber;
+            break;
+
+        default:
+            return;
+
+    }
+
+    if (!Number.isFinite(result)) {
+
+        currentInput = "Error";
+
+    }
+
+    else {
+
+        result = parseFloat(result.toPrecision(12));
+
+        currentInput = String(result);
+
+    }
+
+    previousInput = "";
+
+    operator = null;
+
+    shouldReset = true;
+
+    updateDisplay();
+
+}
+
+
+function clearCalculator() {
+
+    currentInput = "0";
+
+    previousInput = "";
+
+    operator = null;
+
+    shouldReset = false;
+
+    updateDisplay();
+
+}
+
+
+function deleteNumber() {
+
+    if (currentInput === "Error" || shouldReset) {
+
+        clearCalculator();
+
+        return;
+
+    }
+
+    currentInput = currentInput.length > 1
+        ? currentInput.slice(0, -1)
+        : "0";
+
+    updateDisplay();
+
+}
+
+
+buttons.forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        const number = this.dataset.number;
+
+        const selectedOperator = this.dataset.operator;
+
+        const action = this.dataset.action;
+
+        if (number !== undefined) {
+
+            appendNumber(number);
+
+        }
+
+        else if (selectedOperator) {
+
+            chooseOperator(selectedOperator);
+
+        }
+
+        else if (action === "decimal") {
+
+            appendDecimal();
+
+        }
+
+        else if (action === "calculate") {
+
+            calculate();
+
+        }
+
+        else if (action === "clear") {
+
+            clearCalculator();
+
+        }
+
+        else if (action === "delete") {
+
+            deleteNumber();
+
+        }
+
+    });
+
+});
+
+
+// Keyboard support
+
+document.addEventListener("keydown", function(event) {
+
+    if (/^[0-9]$/.test(event.key)) {
+
+        appendNumber(event.key);
+
+    }
+
+    else if (["+", "-", "*", "/"].includes(event.key)) {
+
+        chooseOperator(event.key);
+
+    }
+
+    else if (event.key === ".") {
+
+        appendDecimal();
+
+    }
+
+    else if (event.key === "Enter" || event.key === "=") {
+
+        event.preventDefault();
+
+        calculate();
+
+    }
+
+    else if (event.key === "Backspace") {
+
+        deleteNumber();
+
+    }
+
+    else if (event.key === "Escape") {
+
+        clearCalculator();
+
+    }
+
+});
+
+
+updateDisplay();
+
+</script>
+
+</body>
+</html>

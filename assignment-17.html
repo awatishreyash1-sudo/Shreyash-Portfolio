@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Output & Reference Code | Shreyash Awati</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        .project-tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .project-tab, .file-tab {
+            padding: 12px 22px;
+            border: 1px solid #dce0e8;
+            border-radius: 8px;
+            background: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+        }
+
+        .project-tab.active, .file-tab.active {
+            background: #eaf0ff;
+            color: #3158b5;
+            border-color: #5277d8;
+        }
+
+        .project-panel, .code-panel {
+            display: none;
+        }
+
+        .project-panel.active, .code-panel.active {
+            display: block;
+        }
+
+        .output-box {
+            padding: 25px;
+            background: #f5f6f8;
+            border: 1px solid #e3e6ed;
+            border-radius: 12px;
+        }
+
+        .demo-card {
+            max-width: 600px;
+            margin: auto;
+            padding: 35px 25px;
+            background: #fff;
+            border: 1px solid #e2e5eb;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .demo-card h2 {
+            color: #3158b5;
+            margin-bottom: 12px;
+        }
+
+        .demo-card p {
+            color: #687080;
+            margin-bottom: 25px;
+        }
+
+        .demo-icon {
+            font-size: 55px;
+            color: #3158b5;
+            margin-bottom: 20px;
+        }
+
+        .demo-btn {
+            padding: 13px 25px;
+            background: #3158b5;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .demo-btn:hover {
+            background: #24458f;
+        }
+
+        .file-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .code-wrapper {
+            border: 1px solid #e2e5eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            background: #fbfcfe;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: #f1f3f7;
+            border-bottom: 1px solid #e2e5eb;
+            flex-wrap: wrap;
+        }
+
+        .code-header h3 {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .code-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .code-actions button {
+            padding: 8px 12px;
+            border: 1px solid #dce0e8;
+            border-radius: 6px;
+            background: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-size: 13px;
+        }
+
+        .code-content {
+            overflow-x: auto;
+        }
+
+        .code-content pre {
+            margin: 0;
+            padding: 20px;
+            min-width: max-content;
+            color: #263247;
+            font: 13px/1.8 Consolas, monospace;
+            white-space: pre;
+        }
+
+        .info-note {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f3f6fc;
+            color: #48556b;
+        }
+
+        /* Assignment 17 Output */
+        .number-select {
+            width: 100%;
+            max-width: 350px;
+            padding: 13px;
+            border: 1px solid #dce0e8;
+            border-radius: 7px;
+            font: inherit;
+            margin-bottom: 18px;
+            background: #fff;
+        }
+
+        .number-output {
+            width: 100%;
+            max-width: 450px;
+            min-height: 100px;
+            padding: 13px;
+            border: 1px solid #dce0e8;
+            border-radius: 7px;
+            font: inherit;
+            resize: vertical;
+            margin-top: 10px;
+        }
+
+        .arrow-btn {
+            width: 48px;
+            height: 45px;
+            border: none;
+            border-radius: 7px;
+            background: #3158b5;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+
+        .arrow-btn:hover {
+            background: #24458f;
+        }
+
+        .number-count {
+            color: #687080;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        .reset-btn {
+            padding: 10px 20px;
+            border: 1px solid #dce0e8;
+            border-radius: 7px;
+            background: #fff;
+            color: #3158b5;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .reset-btn:hover {
+            background: #eaf0ff;
+        }
+
+        @media(max-width:600px) {
+            .output-box {
+                padding: 12px;
+            }
+
+            .demo-card {
+                padding: 22px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+            Shreyash<span>.</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="education.html">Education</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="certifications.html">Certificates</a>
+            <a href="assignments.html" class="active">Assignments</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <a href="resume/Shreyash-Resume.pdf" class="nav-resume" target="_blank">
+            Resume <i class="fa-solid fa-download"></i>
+        </a>
+
+    </div>
+</header>
+
+
+<!-- HERO -->
+<section class="page-hero">
+    <div class="container">
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> /
+            <a href="assignments.html">Assignments</a> /
+            Assignment 17 / Output & Code
+        </div>
+
+        <span class="section-tag">ASSIGNMENT 17</span>
+
+        <h1>Dropdown Number Selection</h1>
+
+        <p>
+            Select Numbers from Dropdown and Append Them to a Text Box
+        </p>
+
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="container">
+
+        <div class="detail-card">
+
+            <h2>
+                <i class="fa-solid fa-laptop-code"></i>
+                Project Demonstration
+            </h2>
+
+            <p>
+                Select a number from the dropdown list and click the
+                arrow button to append the selected number to the text box.
+                A maximum of 10 numbers can be added.
+            </p>
+
+
+            <!-- MAIN TABS -->
+            <div class="project-tabs">
+
+                <button class="project-tab active" data-panel="output">
+                    <i class="fa-solid fa-eye"></i> View Output
+                </button>
+
+                <button class="project-tab" data-panel="reference">
+                    <i class="fa-solid fa-code"></i> Reference Code
+                </button>
+
+            </div>
+
+
+            <!-- OUTPUT PANEL -->
+            <div class="project-panel active" id="output">
+
+                <div class="output-box">
+
+                    <div class="demo-card">
+
+                        <div class="demo-icon">
+                            <i class="fa-solid fa-list-ol"></i>
+                        </div>
+
+                        <h2>Number Selection</h2>
+
+                        <p>
+                            Select a number and click the arrow button
+                            to add it to the text box.
+                        </p>
+
+                        <div>
+                            <select id="numberSelect" class="number-select">
+                                <option value="">Select a Number</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+
+                            <button class="arrow-btn" id="addNumberBtn" title="Add Number">
+                                →
+                            </button>
+                        </div>
+
+                        <label for="numberOutput">
+                            <strong>Selected Numbers</strong>
+                        </label>
+
+                        <br>
+
+                        <textarea
+                            id="numberOutput"
+                            class="number-output"
+                            rows="4"
+                            readonly
+                            placeholder="Selected numbers will appear here..."
+                        ></textarea>
+
+                        <p class="number-count" id="numberCount">
+                            Numbers Added: 0 / 10
+                        </p>
+
+                        <button class="reset-btn" id="resetNumbers">
+                            <i class="fa-solid fa-rotate-left"></i>
+                            Reset
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="info-note">
+                    <strong>How to test:</strong>
+                    <ul>
+                        <li>Select any number from the dropdown list.</li>
+                        <li>Click the → button.</li>
+                        <li>The selected number will appear in the text box.</li>
+                        <li>Repeat the process to add more numbers.</li>
+                        <li>A maximum of 10 numbers can be added.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+            <!-- REFERENCE CODE PANEL -->
+            <div class="project-panel" id="reference">
+
+                <h2 style="margin-top:20px;">
+                    <i class="fa-solid fa-file-code"></i>
+                    Source Code Files
+                </h2>
+
+                <p>
+                    Select a file below to view, copy or download
+                    its complete source code.
+                </p>
+
+                <div class="file-tabs">
+
+                    <button class="file-tab active" data-file="html">
+                        HTML
+                    </button>
+
+                    <button class="file-tab" data-file="css">
+                        CSS
+                    </button>
+
+                    <button class="file-tab" data-file="js">
+                        JavaScript
+                    </button>
+
+                </div>
+
+
+                <!-- HTML CODE -->
+                <div class="code-panel active" id="html">
+
+                    <div class="code-wrapper">
+
+                        <div class="code-header">
+                            <h3>assignment-17.html</h3>
+
+                            <div class="code-actions">
+                                <button onclick="copyCode('htmlCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('htmlCode','assignment-17.html')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+<pre><code id="htmlCode">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Number Selection&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;h1&gt;Number Selection&lt;/h1&gt;
+
+    &lt;select id="numberSelect"&gt;
+        &lt;option value=""&gt;Select a Number&lt;/option&gt;
+        &lt;option value="1"&gt;1&lt;/option&gt;
+        &lt;option value="2"&gt;2&lt;/option&gt;
+        &lt;option value="3"&gt;3&lt;/option&gt;
+        &lt;option value="4"&gt;4&lt;/option&gt;
+        &lt;option value="5"&gt;5&lt;/option&gt;
+        &lt;option value="6"&gt;6&lt;/option&gt;
+        &lt;option value="7"&gt;7&lt;/option&gt;
+        &lt;option value="8"&gt;8&lt;/option&gt;
+        &lt;option value="9"&gt;9&lt;/option&gt;
+        &lt;option value="10"&gt;10&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;button onclick="addNumber()"&gt;→&lt;/button&gt;
+
+    &lt;br&gt;&lt;br&gt;
+
+    &lt;textarea id="numberOutput" readonly&gt;&lt;/textarea&gt;
+
+    &lt;p id="numberCount"&gt;Numbers Added: 0 / 10&lt;/p&gt;
+
+    &lt;button onclick="resetNumbers()"&gt;Reset&lt;/button&gt;
+
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- CSS CODE -->
+                <div class="code-panel" id="css">
+
+                    <div class="code-wrapper">
+
+                        <div class="code-header">
+                            <h3>style.css</h3>
+
+                            <div class="code-actions">
+                                <button onclick="copyCode('cssCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('cssCode','style.css')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+<pre><code id="cssCode">body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 30px;
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 18px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+textarea {
+    width: 300px;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- JAVASCRIPT CODE -->
+                <div class="code-panel" id="js">
+
+                    <div class="code-wrapper">
+
+                        <div class="code-header">
+                            <h3>script.js</h3>
+
+                            <div class="code-actions">
+                                <button onclick="copyCode('jsCode')">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+
+                                <button onclick="downloadCode('jsCode','script.js')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="code-content">
+<pre><code id="jsCode">let count = 0;
+
+function addNumber() {
+
+    let select = document.getElementById("numberSelect");
+    let output = document.getElementById("numberOutput");
+    let status = document.getElementById("numberCount");
+
+    let selectedNumber = select.value;
+
+    if (selectedNumber === "") {
+        alert("Please select a number!");
+        return;
+    }
+
+    if (count >= 10) {
+        alert("Maximum 10 numbers are allowed!");
+        return;
+    }
+
+    if (count > 0) {
+        output.value += ", ";
+    }
+
+    output.value += selectedNumber;
+
+    count++;
+
+    status.textContent = "Numbers Added: " + count + " / 10";
+
+    select.value = "";
+
+    if (count === 10) {
+        alert("Maximum 10 numbers added!");
+    }
+}
+
+function resetNumbers() {
+
+    count = 0;
+
+    document.getElementById("numberOutput").value = "";
+    document.getElementById("numberSelect").value = "";
+
+    document.getElementById("numberCount").textContent =
+        "Numbers Added: 0 / 10";
+
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-note">
+            <strong>Note:</strong>
+            This program uses HTML dropdown lists and JavaScript
+            to append selected numbers to a text area. A counter
+            restricts the user to adding a maximum of 10 numbers.
+        </div>
+
+
+        <div class="center-button" style="margin-top:30px;">
+
+            <a href="assignments.html" class="btn btn-primary">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Assignments
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+    <div class="container footer-content">
+
+        <a href="index.html" class="logo">
+            Shreyash<span>.</span>
+        </a>
+
+        <p>Designed & Developed by Shreyash Awati</p>
+
+        <small>© 2026 Shreyash Awati</small>
+
+    </div>
+
+</footer>
+
+
+<script src="js/main.js"></script>
+
+<script>
+
+// NUMBER SELECTION
+let count = 0;
+
+function addNumber() {
+
+    const select = document.getElementById("numberSelect");
+    const output = document.getElementById("numberOutput");
+    const status = document.getElementById("numberCount");
+
+    const selectedNumber = select.value;
+
+    if (selectedNumber === "") {
+        alert("Please select a number!");
+        return;
+    }
+
+    if (count >= 10) {
+        alert("Maximum 10 numbers are allowed!");
+        return;
+    }
+
+    if (count > 0) {
+        output.value += ", ";
+    }
+
+    output.value += selectedNumber;
+
+    count++;
+
+    status.textContent = "Numbers Added: " + count + " / 10";
+
+    select.value = "";
+
+    if (count === 10) {
+        alert("Maximum 10 numbers added!");
+    }
+}
+
+
+// ARROW BUTTON
+document.getElementById("addNumberBtn").addEventListener("click", addNumber);
+
+
+// RESET BUTTON
+function resetNumbers() {
+
+    count = 0;
+
+    document.getElementById("numberOutput").value = "";
+    document.getElementById("numberSelect").value = "";
+
+    document.getElementById("numberCount").textContent =
+        "Numbers Added: 0 / 10";
+
+}
+
+document.getElementById("resetNumbers").addEventListener("click", resetNumbers);
+
+
+// MAIN TABS
+const projectTabs = document.querySelectorAll(".project-tab");
+const projectPanels = document.querySelectorAll(".project-panel");
+
+projectTabs.forEach(function(tab) {
+
+    tab.addEventListener("click", function() {
+
+        projectTabs.forEach(item => item.classList.remove("active"));
+        projectPanels.forEach(item => item.classList.remove("active"));
+
+        this.classList.add("active");
+
+        document.getElementById(this.dataset.panel)
+            .classList.add("active");
+
+    });
+
+});
+
+
+// FILE TABS
+const fileTabs = document.querySelectorAll(".file-tab");
+const codePanels = document.querySelectorAll(".code-panel");
+
+fileTabs.forEach(function(tab) {
+
+    tab.addEventListener("click", function() {
+
+        fileTabs.forEach(item => item.classList.remove("active"));
+        codePanels.forEach(item => item.classList.remove("active"));
+
+        this.classList.add("active");
+
+        document.getElementById(this.dataset.file)
+            .classList.add("active");
+
+    });
+
+});
+
+
+// COPY CODE
+function copyCode(elementId) {
+
+    const code = document.getElementById(elementId).textContent;
+
+    navigator.clipboard.writeText(code)
+        .then(() => alert("Code copied successfully!"))
+        .catch(() => alert("Copy failed. Please copy manually."));
+
+}
+
+
+// DOWNLOAD CODE
+function downloadCode(elementId, fileName) {
+
+    const code = document.getElementById(elementId).textContent;
+
+    const blob = new Blob([code], {
+        type: "text/html"
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = fileName;
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+}
+
+</script>
+
+</body>
+</html>

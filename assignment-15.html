@@ -1,0 +1,863 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Output & Reference Code | Shreyash Awati</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        .project-tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .project-tab {
+            padding: 12px 22px;
+            border: 1px solid #dce0e8;
+            border-radius: 8px;
+            background: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+        }
+
+        .project-tab.active,
+        .file-tab.active {
+            background: #eaf0ff;
+            color: #3158b5;
+            border-color: #5277d8;
+        }
+
+        .project-panel,
+        .code-panel {
+            display: none;
+        }
+
+        .project-panel.active,
+        .code-panel.active {
+            display: block;
+        }
+
+        .output-box {
+            padding: 25px;
+            background: #f5f6f8;
+            border: 1px solid #e3e6ed;
+            border-radius: 12px;
+        }
+
+        .timer-card {
+            max-width: 600px;
+            margin: auto;
+            padding: 35px 25px;
+            background: #fff;
+            border: 1px solid #e2e5eb;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .timer-card h2 {
+            color: #3158b5;
+            margin-bottom: 10px;
+        }
+
+        .timer-card p {
+            color: #687080;
+            margin-bottom: 25px;
+        }
+
+        .timer-display {
+            padding: 25px;
+            margin: 20px 0;
+            background: #f1f4fc;
+            border-radius: 10px;
+        }
+
+        .timer-display h1 {
+            font-size: 55px;
+            color: #3158b5;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .timer-status {
+            margin: 15px 0;
+            font-weight: 600;
+            color: #687080;
+        }
+
+        .timer-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .timer-buttons button {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 7px;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .start-btn {
+            background: #3158b5;
+            color: white;
+        }
+
+        .stop-btn {
+            background: #e9edf5;
+            color: #333;
+        }
+
+        .reset-btn {
+            background: #fcebea;
+            color: #bd3b32;
+        }
+
+        .timer-buttons button:hover {
+            opacity: 0.85;
+        }
+
+        .info-note {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f3f6fc;
+            color: #48556b;
+        }
+
+        .file-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .file-tab {
+            padding: 10px 18px;
+            background: #fff;
+            border: 1px solid #dce0e8;
+            border-radius: 7px;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+        }
+
+        .code-wrapper {
+            border: 1px solid #e2e5eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            background: #fbfcfe;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: #f1f3f7;
+            border-bottom: 1px solid #e2e5eb;
+            flex-wrap: wrap;
+        }
+
+        .code-header h3 {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .code-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .code-actions button {
+            padding: 8px 12px;
+            border: 1px solid #dce0e8;
+            border-radius: 6px;
+            background: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-size: 13px;
+        }
+
+        .code-content {
+            overflow-x: auto;
+        }
+
+        .code-content pre {
+            margin: 0;
+            padding: 20px;
+            min-width: max-content;
+            color: #263247;
+            font: 13px/1.8 Consolas, monospace;
+            white-space: pre;
+        }
+
+        @media(max-width: 600px) {
+            .output-box {
+                padding: 12px;
+            }
+
+            .timer-card {
+                padding: 22px 15px;
+            }
+
+            .timer-display h1 {
+                font-size: 42px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+            Shreyash<span>.</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="education.html">Education</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="certifications.html">Certificates</a>
+            <a href="assignments.html" class="active">Assignments</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <a href="resume/Shreyash-Resume.pdf" class="nav-resume" target="_blank">
+            Resume <i class="fa-solid fa-download"></i>
+        </a>
+
+    </div>
+</header>
+
+
+<!-- HERO -->
+<section class="page-hero">
+    <div class="container">
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> /
+            <a href="assignments.html">Assignments</a> /
+            Assignment 15 /
+            Output & Code
+        </div>
+
+        <span class="section-tag">ASSIGNMENT 15</span>
+
+        <h1>setInterval() & clearInterval()</h1>
+
+        <p>
+            JavaScript Program Demonstrating the Use of
+            setInterval() and clearInterval()
+        </p>
+
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="container">
+
+        <div class="detail-card">
+
+            <h2>
+                <i class="fa-solid fa-laptop-code"></i>
+                Project Demonstration
+            </h2>
+
+            <p>
+                Explore the working demonstration of JavaScript
+                setInterval() and clearInterval() functions
+                with complete HTML, CSS and JavaScript source code.
+            </p>
+
+
+            <!-- MAIN TABS -->
+            <div class="project-tabs">
+
+                <button class="project-tab active" data-panel="output">
+                    <i class="fa-solid fa-eye"></i> View Output
+                </button>
+
+                <button class="project-tab" data-panel="reference">
+                    <i class="fa-solid fa-code"></i> Reference Code
+                </button>
+
+            </div>
+
+
+            <!-- OUTPUT PANEL -->
+            <div class="project-panel active" id="output">
+
+                <div class="output-box">
+
+                    <div class="timer-card">
+
+                        <h2>JavaScript Timer</h2>
+
+                        <p>
+                            Demonstration of setInterval()
+                            and clearInterval()
+                        </p>
+
+                        <div class="timer-display">
+
+                            <h1 id="timerCount">0</h1>
+
+                            <div class="timer-status" id="timerStatus">
+                                Timer is stopped
+                            </div>
+
+                        </div>
+
+                        <div class="timer-buttons">
+
+                            <button class="start-btn" id="startTimer">
+                                <i class="fa-solid fa-play"></i>
+                                Start Timer
+                            </button>
+
+                            <button class="stop-btn" id="stopTimer">
+                                <i class="fa-solid fa-pause"></i>
+                                Stop Timer
+                            </button>
+
+                            <button class="reset-btn" id="resetTimer">
+                                <i class="fa-solid fa-rotate"></i>
+                                Reset
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="info-note">
+
+                    <strong>How to test:</strong>
+
+                    <ul>
+                        <li>Click Start Timer to start counting.</li>
+                        <li>The number increases automatically every second.</li>
+                        <li>Click Stop Timer to stop the interval.</li>
+                        <li>Click Reset to set the counter back to zero.</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- REFERENCE CODE PANEL -->
+            <div class="project-panel" id="reference">
+
+                <h2 style="margin-top:20px;">
+                    <i class="fa-solid fa-file-code"></i>
+                    Source Code Files
+                </h2>
+
+                <p>
+                    Select a file below to view, copy or download
+                    its complete source code.
+                </p>
+
+
+                <!-- FILE TABS -->
+                <div class="file-tabs">
+
+                    <button class="file-tab active" data-file="html">
+                        HTML
+                    </button>
+
+                    <button class="file-tab" data-file="css">
+                        CSS
+                    </button>
+
+                    <button class="file-tab" data-file="js">
+                        JavaScript
+                    </button>
+
+                </div>
+
+
+                <!-- HTML SOURCE -->
+                <div class="code-panel active" id="html">
+
+                    <div class="code-wrapper">
+
+                        <div class="code-header">
+
+                            <h3>index.html</h3>
+
+                            <div class="code-actions">
+
+                                <button onclick="copyCode('htmlCode')">
+                                    <i class="fa-regular fa-copy"></i>
+                                    Copy
+                                </button>
+
+                                <button onclick="downloadCode('htmlCode','index.html')">
+                                    <i class="fa-solid fa-download"></i>
+                                    Download
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="code-content">
+<pre><code id="htmlCode">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;JavaScript Timer&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;div class="container"&gt;
+
+        &lt;h1&gt;JavaScript Timer&lt;/h1&gt;
+
+        &lt;p&gt;Demonstration of setInterval() and clearInterval()&lt;/p&gt;
+
+        &lt;h2 id="counter"&gt;0&lt;/h2&gt;
+
+        &lt;p id="status"&gt;Timer is stopped&lt;/p&gt;
+
+        &lt;button id="startBtn"&gt;Start Timer&lt;/button&gt;
+
+        &lt;button id="stopBtn"&gt;Stop Timer&lt;/button&gt;
+
+        &lt;button id="resetBtn"&gt;Reset&lt;/button&gt;
+
+    &lt;/div&gt;
+
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CSS SOURCE -->
+                <div class="code-panel" id="css">
+
+                    <div class="code-wrapper">
+
+                        <div class="code-header">
+
+                            <h3>style.css</h3>
+
+                            <div class="code-actions">
+
+                                <button onclick="copyCode('cssCode')">
+                                    <i class="fa-regular fa-copy"></i>
+                                    Copy
+                                </button>
+
+                                <button onclick="downloadCode('cssCode','style.css')">
+                                    <i class="fa-solid fa-download"></i>
+                                    Download
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="code-content">
+<pre><code id="cssCode">* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6fa;
+    color: #333;
+    padding: 30px 15px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+h1 {
+    color: #3158b5;
+    margin-bottom: 15px;
+}
+
+p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+#counter {
+    font-size: 60px;
+    color: #3158b5;
+    margin: 25px 0;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 6px;
+    border: none;
+    border-radius: 6px;
+    background: #3158b5;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #24458f;
+}
+
+#status {
+    font-weight: bold;
+}
+
+@media(max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    #counter {
+        font-size: 45px;
+    }
+}</code></pre>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- JAVASCRIPT SOURCE -->
+                <div class="code-panel" id="js">
+
+                    <div class="code-wrapper">
+
+                        <div class="code-header">
+
+                            <h3>script.js</h3>
+
+                            <div class="code-actions">
+
+                                <button onclick="copyCode('jsCode')">
+                                    <i class="fa-regular fa-copy"></i>
+                                    Copy
+                                </button>
+
+                                <button onclick="downloadCode('jsCode','script.js')">
+                                    <i class="fa-solid fa-download"></i>
+                                    Download
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="code-content">
+<pre><code id="jsCode">// Get HTML elements
+const counter = document.getElementById("counter");
+const status = document.getElementById("status");
+
+const startBtn = document.getElementById("startBtn");
+const stopBtn = document.getElementById("stopBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+// Initialize variables
+let count = 0;
+let interval = null;
+
+// Start Timer
+startBtn.addEventListener("click", function() {
+
+    // Prevent multiple intervals
+    if (interval !== null) {
+        return;
+    }
+
+    status.textContent = "Timer is running";
+
+    // Execute code every 1000 milliseconds
+    interval = setInterval(function() {
+
+        count++;
+
+        counter.textContent = count;
+
+    }, 1000);
+
+});
+
+// Stop Timer
+stopBtn.addEventListener("click", function() {
+
+    // Stop the interval
+    clearInterval(interval);
+
+    interval = null;
+
+    status.textContent = "Timer is stopped";
+
+});
+
+// Reset Timer
+resetBtn.addEventListener("click", function() {
+
+    // Stop running interval
+    clearInterval(interval);
+
+    interval = null;
+
+    // Reset counter
+    count = 0;
+
+    counter.textContent = count;
+
+    status.textContent = "Timer is reset";
+
+});</code></pre>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- NOTE -->
+        <div class="info-note">
+
+            <strong>Note:</strong>
+
+            This is a client-side JavaScript demonstration.
+            setInterval() repeatedly executes a function after
+            a specified time interval, while clearInterval()
+            stops the scheduled execution.
+
+        </div>
+
+
+        <!-- BACK BUTTONS -->
+        <div class="center-button" style="margin-top:30px;">
+
+            <a href="assignments.html" class="btn btn-primary">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Assignments
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+    <div class="container footer-content">
+
+        <a href="index.html" class="logo">
+            Shreyash<span>.</span>
+        </a>
+
+        <p>Designed & Developed by Shreyash Awati</p>
+
+        <small>© 2026 Shreyash Awati</small>
+
+    </div>
+
+</footer>
+
+
+<script src="js/main.js"></script>
+
+<script>
+
+// MAIN OUTPUT AND REFERENCE TABS
+const projectTabs = document.querySelectorAll(".project-tab");
+const projectPanels = document.querySelectorAll(".project-panel");
+
+projectTabs.forEach(function(tab) {
+
+    tab.addEventListener("click", function() {
+
+        projectTabs.forEach(item => item.classList.remove("active"));
+        projectPanels.forEach(item => item.classList.remove("active"));
+
+        this.classList.add("active");
+
+        document.getElementById(this.dataset.panel)
+            .classList.add("active");
+
+    });
+
+});
+
+
+// HTML, CSS AND JAVASCRIPT FILE TABS
+const fileTabs = document.querySelectorAll(".file-tab");
+const codePanels = document.querySelectorAll(".code-panel");
+
+fileTabs.forEach(function(tab) {
+
+    tab.addEventListener("click", function() {
+
+        fileTabs.forEach(item => item.classList.remove("active"));
+        codePanels.forEach(item => item.classList.remove("active"));
+
+        this.classList.add("active");
+
+        document.getElementById(this.dataset.file)
+            .classList.add("active");
+
+    });
+
+});
+
+
+// COPY CODE FUNCTION
+function copyCode(elementId) {
+
+    const code = document.getElementById(elementId).textContent;
+
+    navigator.clipboard.writeText(code)
+        .then(() => alert("Code copied successfully!"))
+        .catch(() => alert("Copy failed. Please copy manually."));
+
+}
+
+
+// DOWNLOAD CODE FUNCTION
+function downloadCode(elementId, fileName) {
+
+    const code = document.getElementById(elementId).textContent;
+
+    const blob = new Blob([code], {
+        type: "text/plain"
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = fileName;
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+// WORKING TIMER OUTPUT
+const timerCount = document.getElementById("timerCount");
+const timerStatus = document.getElementById("timerStatus");
+
+const startTimer = document.getElementById("startTimer");
+const stopTimer = document.getElementById("stopTimer");
+const resetTimer = document.getElementById("resetTimer");
+
+let count = 0;
+let timerInterval = null;
+
+
+// START TIMER
+startTimer.addEventListener("click", function() {
+
+    if (timerInterval !== null) {
+        return;
+    }
+
+    timerStatus.textContent = "Timer is running";
+
+    timerInterval = setInterval(function() {
+
+        count++;
+
+        timerCount.textContent = count;
+
+    }, 1000);
+
+});
+
+
+// STOP TIMER
+stopTimer.addEventListener("click", function() {
+
+    clearInterval(timerInterval);
+
+    timerInterval = null;
+
+    timerStatus.textContent = "Timer is stopped";
+
+});
+
+
+// RESET TIMER
+resetTimer.addEventListener("click", function() {
+
+    clearInterval(timerInterval);
+
+    timerInterval = null;
+
+    count = 0;
+
+    timerCount.textContent = count;
+
+    timerStatus.textContent = "Timer is reset";
+
+});
+
+</script>
+
+</body>
+</html>
